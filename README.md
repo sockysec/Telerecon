@@ -9,3 +9,4 @@ If prompted to "Please enter your phone (or bot token):" you may need to input y
 
 # Known Issues
 - UserID inputs are not currently working.
+- Progress bars not showing progress.
