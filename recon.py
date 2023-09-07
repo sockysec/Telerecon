@@ -66,7 +66,7 @@ async def main():
         if post_count > 0:
             print(f"{Fore.CYAN}{target_user} has {Fore.YELLOW}{post_count}{Fore.CYAN} posts in {Fore.YELLOW}{target_channel}.{Style.RESET_ALL}")
         else:
-            print(f"{Fore.CYAN}{target_user} has {Fore.YELLOW}no posts{Fore.CYAN} in {target_channel}.{Style.RESET_ALL}")
+            print(f"{Fore.CYAN}{target_user} has {Fore.YELLOW}no posts{Fore.CYAN} in {Fore.YELLOW}{target_channel}.{Style.RESET_ALL}")
 
     csv_filename = os.path.join(output_directory, f'{target_user}_Activity.csv')
     df = pd.DataFrame(post_counts.items(), columns=['Channel', 'Post Count'])
