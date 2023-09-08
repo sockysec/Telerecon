@@ -1,7 +1,7 @@
 import os
 import asyncio
 import details as ds
-from telethon import TelegramClient, errors, types, utils
+from telethon import TelegramClient, errors
 import pandas as pd
 from colorama import Fore, Style
 
@@ -115,15 +115,12 @@ async def main():
     else:
         print(f'No messages found for {target_user} in any of the specified channels.')
 
-    # Ask if the user wants to run a data analytics report
-    run_report_option = input(f"{Fore.CYAN}Would you like to run a data analytics report on this target (y/n)? {Style.RESET_ALL}")
-    if run_report_option.lower() == 'y':
-        try:
-            # Run the frequency.py script
-            import subprocess
-            subprocess.run(["python", "frequency.py", csv_filename])
-        except Exception as e:
-            print(f"{Fore.RED}An error occurred while running the data analytics report: {e}{Style.RESET_ALL}")
+    # Ask if the user wants to return to launcher
+    launcher = input('Do you want to return to the launcher? (y/n)')
+
+    if launcher == 'y':
+        print('Restarting...')
+        exec(open("launcher.py").read())
 
 if __name__ == '__main__':
     asyncio.run(main())
