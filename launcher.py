@@ -17,11 +17,12 @@ print(Style.RESET_ALL)
 
 print(Fore.YELLOW + '                                          ')
 print(Fore.YELLOW + 'Welcome to Telerecon, a scraper and reconnaissance framework for Telegram')
+print("")
 print(Fore.YELLOW + 'Please select an option:')
 print(Style.RESET_ALL)
 
 options = {
-    'Get user information': 'target.py',
+    'Get user information': 'userdetails.py',
     'Check user activity across a list of channels': 'recon.py',
     'Collect user messages from a target channel': 'userscraper.py',
     'Collect user messages from a list of target channels': 'usermultiscraper.py',
@@ -29,6 +30,9 @@ options = {
     'Scrape all t.me URL’s from within a channel': 'urlscraper.py',
     'Scrape forwarding relationships into target channel': 'channels.py',
     'Scrape forwarding relationships into a list of target channel': 'channellist.py',
+    'Extract GPS data from collected user media': 'metadata.py',
+    'Create visulisation report from collected user messages': 'frequency.py',
+    'Extract named entities from collected user messages': 'ner.py',
     'Conduct a subscriber census across a list of target channels': 'census.py'
 }
 
