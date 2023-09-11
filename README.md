@@ -42,11 +42,10 @@ Targeting
 1. Run launcher.py
 2. Select '1' and input a target username (i.e. @Johnsmith), return to the launcher
 3. Select '2', input target username (i.e. @Johnsmith), input target channel list (i.e. targetchats.txt)
-4. When asked whether you would like to scrape posts, select 'y'. Alternatively, select '4'.
-5. Input target username (i.e. @Johnsmith) and channel list (i.e. targetchats.txt). Choose whether or not to include media (media will take longer). After running, return to After running,  launcher.
-6. Select '9', input target username (i.e. @Johnsmith). After running, return to the launcher.
-7. Select '10', input target username (i.e. @Johnsmith) and define a timezone. After running, to the launcher.
-8. Select '11', input target username (i.e. @Johnsmith). After running, return to the launcher.
+4. When asked whether you would like to scrape posts, select 'y'. Alternatively, select '4'. Input target username (i.e. @Johnsmith) and channel list (i.e. targetchats.txt). Choose whether or not to include media (media will take longer). After running, return to launcher.
+5. Select '9', input target username (i.e. @Johnsmith). After running, return to the launcher.
+6. Select '10', input target username (i.e. @Johnsmith) and define a timezone. After running, to the launcher.
+7. Select '11', input target username (i.e. @Johnsmith). After running, return to the launcher.
 
 Output - 
 - Public User Information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
