@@ -38,6 +38,7 @@ python3 launcher.py
 
 Directory creation - Telerecon allows you to search across multiple channels and groups for a target user's activity/posts. However, this requires the creation of a directory of target Telegram channels to search across (Ex. This may be all chats in a geographic area or a target ideological grouping.). If you know the URLs of specific channels, you can manually create your own directory by simply making a csv/txt file with the list of target Telegram URL's on each line. Option '6' can allow you to scrape URLs from pre-existing Telegram directories (i.e. nzdirectory) to quickly build a list. Option '7' utilizes exploratory forward mapping to discover related channels/chat groups and produce a list. Option '8' can be used for a more comprehensive list.
 
+Targeting
 1. Run launcher.py
 2. Select '1' and input a target username (i.e. @Johnsmith), return to the launcher
 3. Select '2', input target username (i.e. @Johnsmith), input target channel list (i.e. targetchats.txt)
