@@ -1,0 +1,13 @@
+telethon
+pandas
+reportlab
+matplotlib
+pytz
+tzlocal
+Pillow
+folium
+unicodedata
+spacy
+datetime
+colorama
+cryptg
