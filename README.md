@@ -6,6 +6,13 @@ A reconnaissance framework for researching and investigating Telegram for OSINT 
 
 If prompted to "Please enter your phone (or bot token):" you may need to input your account phone number. Telegram will then message you a code (in Telegram) to verify your login "Please enter the code you received:".
 
+# Installation 
+
+
+```
+pip install -r requirements.txt
+```
+
 
 # Known Issues
 - UserID inputs are not currently working.
