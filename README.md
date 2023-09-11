@@ -59,6 +59,12 @@ Output -
 
 ..............
 
+# Usage Notes
+
+- Running the advanced reports and analytics (9, 10, 11) assume that you have already collected the target user posts.
+
+..............
+
 # Known Issues
 - UserID inputs are not currently working.
 - Current media download method does not retain image EXIF metadata.
