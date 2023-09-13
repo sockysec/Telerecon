@@ -15,7 +15,7 @@ if not os.path.exists("Collection"):
     os.makedirs("Collection")
 
 # Define the REQUEST_DELAY
-REQUEST_DELAY = 0.5  # Delay in seconds between requests
+REQUEST_DELAY = 1  # Delay in seconds between requests
 
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
     media_directory = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
