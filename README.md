@@ -1,5 +1,5 @@
 # Telerecon
-A reconnaissance framework for researching and investigating Telegram for OSINT purposes.
+Telerecon is a reconnaissance framework for researching and investigating Telegram for OSINT purposes.
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/096861e9-5f4d-42cb-8360-9a59676460ce)
 
@@ -35,38 +35,38 @@ python3 launcher.py
 
 # Options
 
-1. Get user information: search a @username and return any public user information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
+1. **Get user information:**  search a @username and return any public user information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
 
-2. Check user activity across a list of channels: iterate through a txt/csv directory list of Telegram channels, looking for any messages by the target username. (Assumes directory list is in the primary Telerecon directory).
+2. **Check user activity across a list of channels:**  iterate through a txt/csv directory list of Telegram channels, looking for any messages by the target username. (Assumes directory list is in the primary Telerecon directory).
 
-3. Collect user messages from a target channel: collect and compile any messages from the target username in a target channel. Option to also download media. 
+3. **Collect user messages from a target channel:**  collect and compile any messages from the target username in a target channel. Option to also download media. 
 
-4. Collect user messages from a list of target channels: iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media. (Assumes directory list is in the primary Telerecon directory).
+4. **Collect user messages from a list of target channels:**  iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media. (Assumes directory list is in the primary Telerecon directory).
 
-5. Scrape all messages within a channel: collect and compile messages in a target channel. Download full history, last 24 hours, or custom date range.
+5. **Scrape all messages within a channel:**  collect and compile messages in a target channel. Download full history, last 24 hours, or custom date range.
 
-6. Scrape all t.me URL’s from within a channel: parses a channel and extracts all t.me URLs mentioned within. This is designed to easily create a Telegram directory.
+6. **Scrape all t.me URL’s from within a channel:**  parses a channel and extracts all t.me URLs mentioned within. This is designed to easily create a Telegram directory.
 
-7. Scrape forwarding relationships into target channel: scrape forwarding relationships into a target channel. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels.
+7. **Scrape forwarding relationships into target channel:**  scrape forwarding relationships into a target channel. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels.
 
-8. Scrape forwarding relationships into a list of target channel: iterate through a txt/csv directory list of Telegram channels, scraping forwarding relationship. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels. Afterwards can use terminal commands to merge outputs. (i.e. merge URLs lists = cat *.csv | sort | uniq > combined.csv)
+8. **Scrape forwarding relationships into a list of target channel:** iterate through a txt/csv directory list of Telegram channels, scraping forwarding relationship. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels. Afterwards can use terminal commands to merge outputs. (i.e. merge URLs lists = cat *.csv | sort | uniq > combined.csv)
 
-9. Identify possible user associates via interaction network map*: assumes user messages have already been collected. Constructs a network visualisation showing replies/interactions with other users (useful for identifying possible associates).  
+9. **Identify possible user associates via interaction network map:** assumes user messages have already been collected. Constructs a network visualisation showing replies/interactions with other users (useful for identifying possible associates).  
 
-10. Parse user messages to extract selectors/intel: outputting a report containing any potential phone numbers, emails, or other selectors based on regex and key phrase targeting (the report includes citations for ease of verification). Key phrases are customizable by editing the script.
+10. **Parse user messages to extract selectors/intel:** outputting a report containing any potential phone numbers, emails, or other selectors based on regex and key phrase targeting (the report includes citations for ease of verification). Key phrases are customizable by editing the script.
 
-11. Extract GPS data from collected user media: assumes user messages have already been collected. Creates a compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
+11. **Extract GPS data from collected user media:** assumes user messages have already been collected. Creates a compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
 
-12. Create visulisation report from collected user messages: assumes user messages have already been collected. Creates a comprehensive analytics report showing user postage patterns over time (useful for pattern of life analysis etc).
+12. **Create visulisation report from collected user messages:** assumes user messages have already been collected. Creates a comprehensive analytics report showing user postage patterns over time (useful for pattern of life analysis etc).
 
-13. Extract named entities from collected user messages: assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
+13. **Extract named entities from collected user messages:** assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
 
-14. Conduct a subscriber census across a list of target channels: iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
+14. **Conduct a subscriber census across a list of target channels:** iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
 
 
 # Example Targeting Workflow
 
-Directory creation - Telerecon allows you to search across multiple channels and groups for a target user's activity/posts. However, this requires the creation of a directory of target Telegram channels to search across (Ex. This may be all chats in a geographic area or a target ideological grouping.). If you know the URLs of specific channels, you can manually create your own directory by simply making a csv/txt file with the list of target Telegram URL's on each line. Option '6' can allow you to scrape URLs from pre-existing Telegram directories (i.e. nzdirectory) to quickly build a list. Option '7' utilizes exploratory forward mapping to discover related channels/chat groups and produce a list. Option '8' can be used for a more comprehensive list.
+**Directory creation** - Telerecon allows you to search across multiple channels and groups for a target user's activity/posts. However, this requires the creation of a directory of target Telegram channels to search across (Ex. This may be all chats in a geographic area or a target ideological grouping.). If you know the URLs of specific channels, you can manually create your own directory by simply making a csv/txt file with the list of target Telegram URL's on each line. Option '6' can allow you to scrape URLs from pre-existing Telegram directories (i.e. nzdirectory) to quickly build a list. Option '7' utilizes exploratory forward mapping to discover related channels/chat groups and produce a list. Option '8' can be used for a more comprehensive list.
 
 Targeting
 1. Run launcher.py
