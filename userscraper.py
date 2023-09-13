@@ -15,12 +15,14 @@ if not os.path.exists("Collection"):
     os.makedirs("Collection")
 
 # Define the REQUEST_DELAY
-REQUEST_DELAY = 1  # Delay in seconds between requests
+REQUEST_DELAY = 0.5  # Delay in seconds between requests
 
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
     media_directory = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
     if not os.path.exists(media_directory):
         os.makedirs(media_directory)
+
+    network_data = []  # To store network interaction data
 
     async with TelegramClient(phone, api_id, api_hash) as client:
         try:
@@ -35,9 +37,9 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                 sender = post.sender
                 views = post.views or "N/A"
 
-                username = sender.username if sender.username else "N/A"
-                first_name = sender.first_name if sender.first_name else "N/A"
-                last_name = sender.last_name if sender.last_name else "N/A"
+                username = sender.username if sender and sender.username else "N/A"
+                first_name = sender.first_name if sender and sender.first_name else "N/A"
+                last_name = sender.last_name if sender and sender.last_name else "N/A"
                 user_id = sender.id if sender else "N/A"
 
                 message_url = f"https://t.me/{channel_name}/{post.id}"
@@ -52,24 +54,45 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
                 content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
 
+                # Check if the message is a reply to another message
+                if post.reply_to_msg_id:
+                    replied_to_msg_id = post.reply_to_msg_id
+                    original_message = await client.get_messages(entity, ids=replied_to_msg_id)
+
+                    sender_username = original_message.sender.username if original_message.sender and original_message.sender.username else ""
+                    sender_first_name = original_message.sender.first_name if original_message.sender and original_message.sender.first_name else ""
+                    sender_last_name = original_message.sender.last_name if original_message.sender and original_message.sender.last_name else ""
+                    sender_user_id = original_message.sender.id if original_message.sender else ""
+                    receiver_username = username  # Use the sender's username as the receiver's username in a reply
+                    receiver_first_name = first_name
+                    receiver_last_name = last_name
+                    receiver_user_id = user_id
+
+                    interaction_type = "reply"
+                    timestamp = post.date
+
+                    network_data.append((sender_username, sender_first_name, sender_last_name, sender_user_id,
+                                         receiver_username, receiver_first_name, receiver_last_name, receiver_user_id,
+                                         interaction_type, timestamp))
+
                 post_count += 1  # Increment post count
                 if post_count % 10 == 0:
                     print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
 
                 await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
 
-            return content
+            return content, network_data  # Return both content and network data
 
         except (ValueError, errors.FloodWaitError) as ve:
             print(f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
-            return []
+            return [], []  # Return empty lists if there's an error
         except Exception as e:
             print(f"{Fore.RED}Error – {e}{Style.RESET_ALL}")  # Red text for errors
-            return []
+            return [], []  # Return empty lists if there's an error
 
 async def main():
     print()
-    target_user = input(f"{Fore.CYAN}Please enter the target user's @username or User ID: {Style.RESET_ALL}")
+    target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
     target_channel = input(f"{Fore.CYAN}Please enter the target channel's @username or invite link: {Style.RESET_ALL}")
     download_media_option = input(f"{Fore.CYAN}Would you like to download media from the channel (y/n)? {Style.RESET_ALL}")
     download_media = download_media_option.lower() == 'y'
@@ -84,7 +107,7 @@ async def main():
     if not os.path.exists(user_directory):
         os.makedirs(user_directory)
 
-    channel_content = await scrape_user_messages(target_channel, target_user, user_directory, download_media, sanitized_target_user)
+    channel_content, network_data = await scrape_user_messages(target_channel, target_user, user_directory, download_media, sanitized_target_user)
     message_count = len(channel_content)
 
     if message_count:
@@ -97,6 +120,20 @@ async def main():
             print(f"{Fore.RED}An error occurred while saving to CSV: {e}{Style.RESET_ALL}")  # Red text for errors
     else:
         print(f'No messages found for {target_user} in the specified channel.')
+
+    # Save network interaction data to a CSV file
+    network_df = pd.DataFrame(network_data, columns=[
+        'Sender_Username', 'Sender_FirstName', 'Sender_LastName', 'Sender_UserID',
+        'Receiver_Username', 'Receiver_FirstName', 'Receiver_LastName', 'Receiver_UserID',
+        'Interaction_Type', 'Timestamp'
+    ])
+
+    network_csv_filename = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_network.csv")
+    try:
+        network_df.to_csv(network_csv_filename, index=False)
+        print(f'Successfully saved network interaction data to {network_csv_filename}.')
+    except Exception as e:
+        print(f"{Fore.RED}An error occurred while saving network data to CSV: {e}{Style.RESET_ALL}")
 
     # Ask if the user wants to return to launcher
     launcher = input('Do you want to return to the launcher? (y/n)')
