@@ -83,7 +83,7 @@ async def get_user_information(client, identifier, username):
         print(f"{Fore.RED}Error:{Style.RESET_ALL} {str(e)}")
 
 async def main():
-    identifier = input(f"{Fore.CYAN}Enter target (@username, user ID, or phone number i.e. +1234567890 ){Fore.RESET}: ")
+    identifier = input(f"{Fore.CYAN}Enter target @username{Fore.RESET}: ")
     
     # Create a 'Collection' directory if it doesn't exist
     if not os.path.exists("Collection"):
