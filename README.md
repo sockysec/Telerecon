@@ -83,6 +83,7 @@ Targeting
 # Usage Notes
 
 - Running the advanced reports and analytics (9, 10, 11, 12, 13) assume that you have already collected the target user's posts.
+- You can speed up collection by decreasing the "REQUEST_DELAY =" however this may result in temporary API rate limiting.
 
 
 # Known Issues
