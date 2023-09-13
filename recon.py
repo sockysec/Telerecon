@@ -69,8 +69,6 @@ async def process_target_channels(target_user, target_list_filename):
     print()
     print(f"{Fore.GREEN}Success: Post counts saved to {csv_filename}{Style.RESET_ALL}")
 
-# Rest of your code...
-
 if __name__ == '__main__':
     target_user = input(f"{Fore.CYAN}Please enter the target user's @username or User ID:{Style.RESET_ALL} ")
     target_user = target_user.replace("@", "")  # Remove "@" symbol
