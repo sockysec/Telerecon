@@ -10,7 +10,7 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
-REQUEST_DELAY = 0.5
+REQUEST_DELAY = 1
 
 async def scrape_channel_content(channel_name, start_date=None, end_date=None):
     async with TelegramClient(phone, api_id, api_hash) as client:
