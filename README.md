@@ -1,8 +1,7 @@
 # Telerecon
 A reconnaissance framework for researching and investigating Telegram for OSINT purposes.
 
-![image](https://github.com/sockysec/Telerecon/assets/121141737/73229006-6eed-4ab6-8212-0b5502dfe98e)
-
+![image](https://github.com/sockysec/Telerecon/assets/121141737/6fc2826e-25b5-46db-81bd-79012e95b9c3)
 
 # Installation 
 
@@ -25,13 +24,58 @@ python3 setup.py
 8. Telerecon is now installed, run launcher.py to use.
 
 
-#Use
+# Use
 
 1. Run launcher.py
 ```
 python3 launcher.py
 ```
 2. Select an option from the menu
+
+1. Get user information
+	Search a @username and return any public user information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
+
+2. Check user activity across a list of channels
+	Iterate through a txt/csv directory list of Telegram channels, looking for any messages by the target username. (Assumes directory list is in the primary Telerecon directory).
+
+3. Collect user messages from a target channel
+	Collect and compile any messages from the target username in a target channel. Option to also download media. 
+
+4. Collect user messages from a list of target channels
+	Iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media. (Assumes directory list is in the primary Telerecon directory).
+
+5. Scrape all messages within a channel
+	Collect and compile messages in a target channel. Download full history, last 24 hours, or custom date range.
+
+6. Scrape all t.me URL’s from within a channel
+	Parses a channel and extracts all t.me URLs mentioned within. This is designed to easily create a Telegram directory.
+
+7. Scrape forwarding relationships into target channel
+	Scrape forwarding relationships into a target channel. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels.
+
+8. Scrape forwarding relationships into a list of target channel
+	Iterate through a txt/csv directory list of Telegram channels, scraping forwarding relationship. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels. Afterwards can use terminal commands to merge outputs.
+	i.e. merge URLs lists = cat *.csv | sort | uniq > combined.csv
+
+9. Identify possible user associates via interaction network map
+	Assumes user messages have already been collected. Constructs a network visualisation showing replies/interactions with other users (useful for identifying possible associates).  
+10. Extract GPS data from collected user media
+	Assumes user messages have already been collected. Creates a compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
+
+11. Create visulisation report from collected user messages
+	Assumes user messages have already been collected. Creates a comprehensive analytics report showing user postage patterns over time (useful for pattern of life analysis etc).
+
+12. Extract named entities from collected user messages
+	Assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
+
+13. Conduct a subscriber census across a list of target channels
+	Iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
+
+
+
+
+
+
 
 
 # Example Targeting Workflow
@@ -42,39 +86,40 @@ Targeting
 1. Run launcher.py
 2. Select '1' and input a target username (i.e. @Johnsmith), return to the launcher
 3. Select '2', input target username (i.e. @Johnsmith), input target channel list (i.e. targetchats.txt)
-4. When asked whether you would like to scrape posts, select 'y'. Alternatively, select '4'. Input target username (i.e. @Johnsmith) and channel list (i.e. targetchats.txt). Choose whether or not to include media (media will take longer). After running, return to launcher.
+4. When asked whether you would like to scrape posts, select 'y'. Alternatively, select '4'. Input target username (i.e. @Johnsmith) and channel list (i.e. targetchats.txt). Choose whether or not to include media (media will take longer). After running, return to the launcher.
 5. Select '9', input target username (i.e. @Johnsmith). After running, return to the launcher.
-6. Select '10', input target username (i.e. @Johnsmith) and define a timezone. After running, to the launcher.
-7. Select '11', input target username (i.e. @Johnsmith). After running, return to the launcher.
-
+6. Select '10', input target username (i.e. @Johnsmith). After running, to the launcher.
+7. Select '11', input target username (i.e. @Johnsmith) and define a timezone. After running, return to the launcher.
+7. Select '12', input target username (i.e. @Johnsmith). After running, return to the launcher.
+   
 Output - 
 - Public User Information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
 - User activity across target channels/groups.
 - All posts/messages/media posted by that user across target channels/groups.
-- Comprehensive analytics report showing user postage patterns (useful for pattern of life analysis etc).
+- A network visualisation showing replies/interactions with other users (useful for identifying possible associates).  
 - A compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
-- A report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition
-- A report containing any possible Phone numbers, email addresses, domains, and usernames mentioned (report includes citations for ease of verification)
+- Comprehensive analytics report showing user postage patterns (useful for pattern of life analysis etc).
+- A report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
+- A report containing any potential phone numbers, emails, or other selectors based on regex and keyphrase targeting (the report includes citations for ease of verification).
 
-..............
+
 
 # Usage Notes
 
-- Running the advanced reports and analytics (9, 10, 11) assume that you have already collected the target user posts.
+- Running the advanced reports and analytics (9, 10, 11, 12) assume that you have already collected the target user's posts.
 
-..............
+
 
 # Known Issues
-- UserID inputs are not currently working.
-- Current media download method does not retain image EXIF metadata.
+- Currently the media download method does not retain image EXIF metadata, meaning that GPS/EXIF extraction function will return blank.
 
-..............
+
 
 # Credit
 
 Credit to Jordan Wildon's (@jordanwildon) Telegram Scraper for the initial inspiration. https://github.com/TechRahul20/TelegramScraper
 
-..............
+
 
 # MIT License
 
