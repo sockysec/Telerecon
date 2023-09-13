@@ -1,107 +1,292 @@
 import os
-import datetime
+
 import asyncio
-from telethon import TelegramClient
-from telethon.tl.types import UserStatusOffline
-from colorama import init, Fore, Style
-from details import apiID, apiHash, number
 
-# Initialize colorama for colored console output
-init(autoreset=True)
+import details as ds
 
-def format_timestamp(timestamp):
-    return datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc).astimezone().strftime('%Y-%m-%d %H:%M:%S %Z')
+from telethon import TelegramClient, errors
 
-async def get_user_information(client, identifier, username):
-    try:
-        user = await client.get_entity(identifier)
-        
-        # Create a user-specific directory
-        user_directory = os.path.join("Collection", username)
-        if not os.path.exists(user_directory):
-            os.makedirs(user_directory)
+import pandas as pd
 
-        print(f"{Fore.CYAN}Username:{Style.RESET_ALL} {user.username or 'N/A'}")
-        print(f"{Fore.CYAN}First Name:{Style.RESET_ALL} {user.first_name or 'N/A'}")
-        print(f"{Fore.CYAN}Last Name:{Style.RESET_ALL} {user.last_name or 'N/A'}")
-        print(f"{Fore.CYAN}User ID:{Style.RESET_ALL} {user.id}")
-        
-        if user.phone:
-            print(f"{Fore.CYAN}Phone Number:{Style.RESET_ALL} {user.phone}")
-        if hasattr(user, 'about'):
-            print(f"{Fore.CYAN}Bio:{Style.RESET_ALL} {user.about or 'N/A'}")
-        
-        if user.photo:
-            profile_photo = await client.download_profile_photo(user.id, file=bytes)
-            with open(os.path.join(user_directory, f'{username}_profile.jpg'), 'wb') as file:
-                file.write(profile_photo)
-            print(f"{Fore.CYAN}Profile Picture:{Style.RESET_ALL} Downloaded and saved as {username}_profile.jpg")
-        else:
-            print(f"{Fore.CYAN}Profile Picture:{Style.RESET_ALL} No")
-        
-        if user.status:
-            if isinstance(user.status, UserStatusOffline):
-                last_seen = user.status.was_online
-                last_seen_formatted = format_timestamp(last_seen.timestamp())
-                print(f"{Fore.CYAN}Last Seen:{Style.RESET_ALL} User was last seen at {last_seen_formatted}")
-            else:
-                print(f"{Fore.CYAN}Online Status:{Style.RESET_ALL} Online")
-        else:
-            print(f"{Fore.CYAN}Online Status:{Style.RESET_ALL} Offline")
-        
-        if hasattr(user, 'mutual_chats_count'):
-            common_chats = user.mutual_chats_count
-            if common_chats is not None:
-                print(f"{Fore.CYAN}Common Chats:{Style.RESET_ALL} {common_chats}")
-            
-        # Save user details to a text file in the user-specific directory
-        with open(os.path.join(user_directory, f'{username}_userdetails.txt'), 'w') as details_file:
-            details_file.write(f"Username: {user.username or 'N/A'}\n")
-            details_file.write(f"First Name: {user.first_name or 'N/A'}\n")
-            details_file.write(f"Last Name: {user.last_name or 'N/A'}\n")
-            details_file.write(f"User ID: {user.id}\n")
-            
-            if user.phone:
-                details_file.write(f"Phone Number: {user.phone}\n")
-            if hasattr(user, 'about'):
-                details_file.write(f"Bio: {user.about or 'N/A'}\n")
-            
-            if user.status:
-                if isinstance(user.status, UserStatusOffline):
-                    last_seen = user.status.was_online
-                    last_seen_formatted = format_timestamp(last_seen.timestamp())
-                    details_file.write(f"Last Seen: User was last seen at {last_seen_formatted}\n")
-                else:
-                    details_file.write(f"Online Status: Online\n")
-            else:
-                details_file.write(f"Online Status: Offline\n")
-            
-            if hasattr(user, 'mutual_chats_count'):
-                details_file.write(f"Common Chats: {common_chats}\n")
+from colorama import Fore, Style
 
-    except Exception as e:
-        print(f"{Fore.RED}Error:{Style.RESET_ALL} {str(e)}")
+
+
+# API details
+
+api_id = ds.apiID
+
+api_hash = ds.apiHash
+
+phone = ds.number
+
+
+
+# Create a directory for saving CSV files and media if it doesn't exist
+
+if not os.path.exists("Collection"):
+
+    os.makedirs("Collection")
+
+
+
+# Define the REQUEST_DELAY
+
+REQUEST_DELAY = 1  # Delay in seconds between requests
+
+
+
+async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
+
+    media_directory = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
+
+    if not os.path.exists(media_directory):
+
+        os.makedirs(media_directory)
+
+
+
+    network_data = []  # To store network interaction data
+
+
+
+    async with TelegramClient(phone, api_id, api_hash) as client:
+
+        try:
+
+            entity = await client.get_entity(channel_name)
+
+            target_entity = await client.get_entity(target_user)
+
+            content = []
+
+
+
+            post_count = 0  # Initialize post count
+
+            async for post in client.iter_messages(entity, from_user=target_entity):
+
+                text = post.text or ""
+
+                date = post.date
+
+                sender = post.sender
+
+                views = post.views or "N/A"
+
+
+
+                username = sender.username if sender and sender.username else "N/A"
+
+                first_name = sender.first_name if sender and sender.first_name else "N/A"
+
+                last_name = sender.last_name if sender and sender.last_name else "N/A"
+
+                user_id = sender.id if sender else "N/A"
+
+
+
+                message_url = f"https://t.me/{channel_name}/{post.id}"
+
+                channel_name = channel_name.split('/')[-1]  # Extract channel name from the URL
+
+
+
+                media = None  # Initialize media as None
+
+                # Check if the message has media (image or voice message) and download_media is True
+
+                if post.media and download_media:
+
+                    media_filename = f'media_{post.id}.jpg'
+
+                    media_path = os.path.join(media_directory, media_filename)
+
+                    await post.download_media(file=media_path)
+
+
+
+                content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
+
+
+
+                # Check if the message is a reply to another message
+
+                if post.reply_to_msg_id:
+
+                    replied_to_msg_id = post.reply_to_msg_id
+
+                    original_message = await client.get_messages(entity, ids=replied_to_msg_id)
+
+
+
+                    sender_username = original_message.sender.username if original_message.sender and original_message.sender.username else ""
+
+                    sender_first_name = original_message.sender.first_name if original_message.sender and original_message.sender.first_name else ""
+
+                    sender_last_name = original_message.sender.last_name if original_message.sender and original_message.sender.last_name else ""
+
+                    sender_user_id = original_message.sender.id if original_message.sender else ""
+
+                    receiver_username = username  # Use the sender's username as the receiver's username in a reply
+
+                    receiver_first_name = first_name
+
+                    receiver_last_name = last_name
+
+                    receiver_user_id = user_id
+
+
+
+                    interaction_type = "reply"
+
+                    timestamp = post.date
+
+
+
+                    network_data.append((sender_username, sender_first_name, sender_last_name, sender_user_id,
+
+                                         receiver_username, receiver_first_name, receiver_last_name, receiver_user_id,
+
+                                         interaction_type, timestamp))
+
+
+
+                post_count += 1  # Increment post count
+
+                if post_count % 10 == 0:
+
+                    print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+
+
+
+                await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
+
+
+
+            return content, network_data  # Return both content and network data
+
+
+
+        except (ValueError, errors.FloodWaitError) as ve:
+
+            print(f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
+
+            return [], []  # Return empty lists if there's an error
+
+        except Exception as e:
+
+            print(f"{Fore.RED}Error – {e}{Style.RESET_ALL}")  # Red text for errors
+
+            return [], []  # Return empty lists if there's an error
+
+
 
 async def main():
-    identifier = input(f"{Fore.CYAN}Enter target @username{Fore.RESET}: ")
-    
-    # Create a 'Collection' directory if it doesn't exist
-    if not os.path.exists("Collection"):
-        os.makedirs("Collection")
-    
-    async with TelegramClient('session_name', apiID, apiHash) as client:
-        # Remove "@" symbol from the username if present
-        username = identifier.replace('@', '')
-        
-        # Call the function with the modified username
-        await get_user_information(client, identifier, username)
 
-    # Ask if the user wants to return to the launcher
+    print()
+
+    target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
+
+    target_channel = input(f"{Fore.CYAN}Please enter the target channel's @username or invite link: {Style.RESET_ALL}")
+
+    download_media_option = input(f"{Fore.CYAN}Would you like to download media from the channel (y/n)? {Style.RESET_ALL}")
+
+    download_media = download_media_option.lower() == 'y'
+
+    print()
+
+    print(f"{Fore.YELLOW}Scraping data can take some time, please be patient.{Style.RESET_ALL}")
+
+    print()
+
+
+
+    sanitized_target_user = target_user.replace('@', '').replace('_', '').replace('-', '')
+
+
+
+    # Create a directory for the user if it doesn't exist
+
+    user_directory = os.path.join("Collection", sanitized_target_user.lstrip('@'))
+
+    if not os.path.exists(user_directory):
+
+        os.makedirs(user_directory)
+
+
+
+    channel_content, network_data = await scrape_user_messages(target_channel, target_user, user_directory, download_media, sanitized_target_user)
+
+    message_count = len(channel_content)
+
+
+
+    if message_count:
+
+        df = pd.DataFrame(channel_content, columns=['Text', 'Date', 'Username', 'First Name', 'Last Name', 'User ID', 'Views', 'Message URL', 'Channel', 'Media'])
+
+        csv_filename = os.path.join(user_directory, f'{sanitized_target_user}_messages.csv')
+
+        try:
+
+            df.to_csv(csv_filename, index=False)
+
+            print(f'Successfully scraped and saved messages to {csv_filename}.')
+
+        except Exception as e:
+
+            print(f"{Fore.RED}An error occurred while saving to CSV: {e}{Style.RESET_ALL}")  # Red text for errors
+
+    else:
+
+        print(f'No messages found for {target_user} in the specified channel.')
+
+
+
+    # Save network interaction data to a CSV file
+
+    network_df = pd.DataFrame(network_data, columns=[
+
+        'Sender_Username', 'Sender_FirstName', 'Sender_LastName', 'Sender_UserID',
+
+        'Receiver_Username', 'Receiver_FirstName', 'Receiver_LastName', 'Receiver_UserID',
+
+        'Interaction_Type', 'Timestamp'
+
+    ])
+
+
+
+    network_csv_filename = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_network.csv")
+
+    try:
+
+        network_df.to_csv(network_csv_filename, index=False)
+
+        print(f'Successfully saved network interaction data to {network_csv_filename}.')
+
+    except Exception as e:
+
+        print(f"{Fore.RED}An error occurred while saving network data to CSV: {e}{Style.RESET_ALL}")
+
+
+
+    # Ask if the user wants to return to launcher
+
     launcher = input('Do you want to return to the launcher? (y/n)')
 
+
+
     if launcher == 'y':
+
         print('Restarting...')
+
         exec(open("launcher.py").read())
 
-if __name__ == "__main__":
+
+
+if __name__ == '__main__':
+
     asyncio.run(main())
+
