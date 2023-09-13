@@ -31,6 +31,7 @@ options = {
     'Scrape forwarding relationships into target channel': 'channels.py',
     'Scrape forwarding relationships into a list of target channel': 'channellist.py',
     'Identify possible user associates via interaction network map': 'network.py',
+    'Parse user messages to extract selectors/intel': 'parse.py',
     'Extract GPS data from collected user media': 'metadata.py',
     'Create visulisation report from collected user messages': 'frequency.py',
     'Extract named entities from collected user messages': 'ner.py',
