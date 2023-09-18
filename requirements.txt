@@ -10,3 +10,4 @@ spaCy
 datetime
 colorama
 cryptg
+wordcloud
