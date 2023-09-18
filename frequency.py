@@ -55,7 +55,7 @@ pivot_dayofmonth = df_grouped_dayofmonth.pivot(index='DayOfMonth', columns='User
 df['Text'] = df['Text'].astype(str)
 
 # Add your custom stopwords to the STOPWORDS set
-custom_stopwords = {"http", "https", "www"}  # Replace with your own stopwords
+custom_stopwords = {"http", "https", "www", "nan"}  # Replace with your own stopwords
 stopwords = set(STOPWORDS)
 stopwords.update(custom_stopwords)
 
