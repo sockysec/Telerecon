@@ -8,7 +8,7 @@ Telerecon is a reconnaissance framework for researching and investigating Telegr
 
 1. Download all files and save to directory of choice.
 
-2. Ensure your system is up to date
+2. Ensure your system is up to date (recommended)
 ```
 sudo apt update
 sudo apt upgrade
@@ -17,7 +17,7 @@ sudo apt upgrade
 ```
 pip install -r requirements.txt
 ```
-4. Download and install spaCy NER language model
+4. Download and install spaCy NER language model (optional, but required for NER parsing feature) 
 ```
  python3 -m spacy download en_core_web_sm 
 ```
