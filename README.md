@@ -96,7 +96,7 @@ Targeting
 
 # Known Issues
 - Currently the media download method does not retain image EXIF metadata, meaning that GPS/EXIF extraction function will return blank.
-
+- Return to launcher and rerunning the same script option, can cause a crash. Simply reboot the launcher.
 
 
 # Credit
