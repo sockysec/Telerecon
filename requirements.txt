@@ -6,8 +6,7 @@ pytz
 tzlocal
 Pillow
 folium
-unicodedata
-spacy
+spaCy
 datetime
 colorama
 cryptg
