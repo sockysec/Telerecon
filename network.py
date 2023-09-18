@@ -99,6 +99,3 @@ else:
     network_viz_path = os.path.join(directory_path, f"{target_username}_network_visualization.png")
     plt.savefig(network_viz_path, bbox_inches='tight', pad_inches=0.1, dpi=400)  # Adjust DPI for higher resolution
     print(f"Network visualization saved to: {network_viz_path}")
-
-    # Display the visualization (optional)
-    plt.show()
