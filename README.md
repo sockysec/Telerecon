@@ -8,21 +8,29 @@ Telerecon is a reconnaissance framework for researching and investigating Telegr
 
 1. Download all files and save to directory of choice.
 
-2. Navigate to the primary Telerecon directory and install the requirements.
+2. Ensure your system is up to date
+```
+sudo apt update
+sudo apt upgrade
+```
+3. Navigate to the primary Telerecon directory and install the requirements.
 ```
 pip install -r requirements.txt
 ```
-
-3. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number.
-4. In terminal, navigate to the installation directory (eg, Telerecon-main) and run setup.py
+4. Download and install spaCy NER language model
+```
+ python3 -m spacy download en_core_web_sm 
+```
+5. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number.
+6. In terminal, navigate to the installation directory (eg, Telerecon-main) and run setup.py
 ```
 python3 setup.py
 ```
-5. As prompted by the script, input your Telegram API key, hash, and phone number (these details will be saved locally).
-6. Telegram may message you a verification code, to confirm setup. If so input the verification code.
-7. If prompted to "Please enter your phone (or bot token):" then you may need to re-input your account phone number. Telegram will then message you the code (in Telegram) to verify your login "Please enter the code you received:".
+7. As prompted by the script, input your Telegram API key, hash, and phone number (these details will be saved locally).
+8. Telegram may message you a verification code, to confirm setup. If so input the verification code.
+9. If prompted to "Please enter your phone (or bot token):" then you may need to re-input your account phone number. Telegram will then message you the code (in Telegram) to verify your login "Please enter the code you received:".
 
-8. Telerecon is now installed, run launcher.py to use.
+10. Telerecon is now installed, run launcher.py to use.
 
 
 # Use
