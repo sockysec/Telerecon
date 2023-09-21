@@ -32,62 +32,80 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
             post_count = 0  # Initialize post count
             async for post in client.iter_messages(entity, from_user=target_entity):
-                text = post.text or ""
-                date = post.date
-                sender = post.sender
-                views = post.views or "N/A"
+                # Check if the post object is not None
+                if post:
+                    text = post.text or ""
+                    date = post.date
 
-                username = sender.username if sender.username else "N/A"
-                first_name = sender.first_name if sender.first_name else "N/A"
-                last_name = sender.last_name if sender.last_name else "N/A"
-                user_id = sender.id if sender else "N/A"
+                    # Check if the message has a sender
+                    if post.sender:
+                        username = post.sender.username if post.sender.username else "N/A"
+                        first_name = post.sender.first_name if post.sender.first_name else "N/A"
+                        last_name = post.sender.last_name if post.sender.last_name else "N/A"
+                        user_id = post.sender.id if post.sender else "N/A"
+                    else:
+                        # Handle the case when the sender is None
+                        username = "N/A"
+                        first_name = "N/A"
+                        last_name = "N/A"
+                        user_id = "N/A"
 
-                message_url = f"https://t.me/{channel_name}/{post.id}"
-                channel_name = channel_name.split('/')[-1]  # Extract channel name from the URL
+                    views = post.views or "N/A"
 
-                media = None  # Initialize media as None
-                # Check if the message has media (image or voice message) and download_media is True
-                if post.media and download_media:
-                    media_filename = f'media_{post.id}.jpg'
-                    media_path = os.path.join(media_directory, media_filename)
-                    await post.download_media(file=media_path)
+                    message_url = f"https://t.me/{channel_name}/{post.id}"
+                    channel_name = channel_name.split('/')[-1]  # Extract channel name from the URL
 
-                content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
+                    media = None  # Initialize media as None
+                    # Check if the message has media (image or voice message) and download_media is True
+                    if post.media and download_media:
+                        media_filename = f'media_{post.id}.jpg'
+                        media_path = os.path.join(media_directory, media_filename)
+                        await post.download_media(file=media_path)
 
-                # Check if the message is a reply to another message
-                if post.reply_to_msg_id:
-                    replied_to_msg_id = post.reply_to_msg_id
-                    original_message = await client.get_messages(entity, ids=replied_to_msg_id)
+                    content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
 
-                    sender_username = original_message.sender.username if original_message.sender.username else ""
-                    sender_first_name = original_message.sender.first_name if original_message.sender.first_name else ""
-                    sender_last_name = original_message.sender.last_name if original_message.sender.last_name else ""
-                    sender_user_id = original_message.sender.id if original_message.sender else ""
-                    receiver_username = post.sender.username if post.sender.username else ""
-                    receiver_first_name = post.sender.first_name if post.sender.first_name else ""
-                    receiver_last_name = post.sender.last_name if post.sender.last_name else ""
-                    receiver_user_id = post.sender.id if post.sender else ""
+                    # Check if the message is a reply to another message
+                    if post.reply_to_msg_id:
+                        replied_to_msg_id = post.reply_to_msg_id
+                        original_message = await client.get_messages(entity, ids=replied_to_msg_id)
 
-                    interaction_type = "reply"
-                    timestamp = post.date
+                        # Check if the original_message object is not None
+                        if original_message:
+                            sender_username = original_message.sender.username if original_message.sender.username else ""
+                            sender_first_name = original_message.sender.first_name if original_message.sender.first_name else ""
+                            sender_last_name = original_message.sender.last_name if original_message.sender.last_name else ""
+                            sender_user_id = original_message.sender.id if original_message.sender else ""
+                            receiver_username = post.sender.username if post.sender.username else ""
+                            receiver_first_name = post.sender.first_name if post.sender.first_name else ""
+                            receiver_last_name = post.sender.last_name if post.sender.last_name else ""
+                            receiver_user_id = post.sender.id if post.sender else ""
 
-                    network_data.append((sender_username, sender_first_name, sender_last_name, sender_user_id,
-                                         receiver_username, receiver_first_name, receiver_last_name, receiver_user_id,
-                                         interaction_type, timestamp))
+                            interaction_type = "reply"
+                            timestamp = post.date
 
-                post_count += 1  # Increment post count
-                if post_count % 10 == 0:
-                    print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+                            network_data.append((sender_username, sender_first_name, sender_last_name, sender_user_id,
+                                                 receiver_username, receiver_first_name, receiver_last_name, receiver_user_id,
+                                                 interaction_type, timestamp))
 
-                await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
+                    post_count += 1  # Increment post count
+                    if post_count % 10 == 0:
+                        print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+
+                    await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
+                else:
+                    print(f"{Fore.RED}Received a None post object. Skipping...{Style.RESET_ALL}")
 
             return content, network_data
 
-        except (ValueError, errors.FloodWaitError) as ve:
-            print(f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
+        except errors.UsernameNotOccupiedError:
+            print(f"{Fore.RED}Target user {target_user} not found in {channel_name}.{Style.RESET_ALL}")
+            return [], []
+        except errors.FloodWaitError as fwe:
+            print(f"{Fore.RED}Encountered FloodWaitError. Waiting for {fwe.seconds} seconds...{Style.RESET_ALL}")
+            await asyncio.sleep(fwe.seconds)
             return [], []
         except Exception as e:
-            print(f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
+            print(f"{Fore.RED}An error occurred: {e}{Style.RESET_ALL}")
             return [], []
 
 async def main():
