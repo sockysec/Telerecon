@@ -60,17 +60,21 @@ python3 launcher.py
 8. **Scrape forwarding relationships into a list of target channel:** iterate through a txt/csv directory list of Telegram channels, scraping forwarding relationship. Exporting a Gephi optimised adjacency list, and URL directory of the discovered channels. Afterwards can use terminal commands to merge outputs. (i.e. merge URLs lists = cat *.csv | sort | uniq > combined.csv)
 
 9. **Identify possible user associates via interaction network map:** assumes user messages have already been collected. Constructs a network visualisation showing replies/interactions with other users (useful for identifying possible associates).  
+
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/12e1aef9-b6a1-4bfb-969f-39e892a73099)
 
 10. **Parse user messages to extract selectors/intel:** outputting a report containing any potential phone numbers, emails, or other selectors based on regex and key phrase targeting (the report includes citations for ease of verification). Key phrases are customizable by editing the script.
+
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/55877564-3b30-47d5-abc6-ad9e3837abd9)
 
 11. **Extract GPS data from collected user media:** assumes user messages have already been collected. Creates a compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
 
 12. **Create visulisation report from collected user messages:** assumes user messages have already been collected. Creates a comprehensive analytics report showing user postage patterns over time (useful for pattern of life analysis etc).
+
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/689f4105-0aad-4be8-9eaa-884885f3f3ca)
 
 13. **Extract named entities from collected user messages:** assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
+
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/464650ce-5e4b-4ddd-b37c-28117708121c)
 
 14. **Conduct a subscriber census across a list of target channels:** iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
