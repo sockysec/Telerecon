@@ -69,11 +69,14 @@ python3 launcher.py
 
 11. **Extract GPS data from collected user media:** assumes user messages have already been collected. Creates a compiled spreadsheet of extracted EXIF metadata from all images, and a map visualization displaying any extracted GPS metadata.
 
+![image](https://github.com/sockysec/Telerecon/assets/121141737/ff2bbf31-24a6-4c8d-be57-a0e6c1585d48)
+
+
 12. **Create visulisation report from collected user messages:** assumes user messages have already been collected. Creates a comprehensive analytics report showing user postage patterns over time (useful for pattern of life analysis etc).
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/689f4105-0aad-4be8-9eaa-884885f3f3ca)
 
-13. **Extract named entities from collected user messages:** assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition.
+13. **Extract named entities from collected user messages:** assumes user messages have already been collected. Creates a report containing extracted Person, Organisation, Location, and date entities extracted by named entity recognition. While not perfect, this function can be useful in identifying key entities for further investigation within big datasets.
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/464650ce-5e4b-4ddd-b37c-28117708121c)
 
