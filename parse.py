@@ -118,3 +118,10 @@ if __name__ == "__main__":
 
     # Run the extraction and PDF generation
     extract_sentences(target_username, "input.csv", target_username + "_keyphrase_report.pdf", target_phrases)
+    
+# Ask if the user wants to return to the launcher
+launcher = input('Do you want to return to the launcher? (y/n)')
+
+if launcher == 'y':
+    print('Restarting...')
+    exec(open("launcher.py").read())
