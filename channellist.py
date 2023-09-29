@@ -1,8 +1,9 @@
 import os
+import asyncio
+import details as ds
 from telethon import TelegramClient
 import pandas as pd
 from colorama import Fore, Style
-import details as ds
 import re
 from urllib.parse import urlparse
 import telethon.errors
@@ -12,33 +13,32 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
-client = TelegramClient(phone, api_id, api_hash)
-
 async def scrape_forwards(channel_name):
     l = []
     source_urls = []
     count = 0
 
-    async for message in client.iter_messages(channel_name):
-        if message.forward is not None:
-            try:
-                id = message.forward.original_fwd.from_id
-                if id is not None:
-                    try:
-                        ent = await client.get_entity(id)
-                        target_channel_entity = await client.get_entity(message.to_id.channel_id)
-                        target_channel_title = target_channel_entity.title
-                        l.append([ent.title, target_channel_title])
-                        source_url = f"https://t.me/{ent.username}"
-                        source_urls.append(source_url)
-                        count += 1
-                        print(f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
-                    except ValueError as e:
-                        print("Skipping forward:", str(e))
-                    except telethon.errors.rpcerrorlist.UsernameNotOccupiedError:
-                        print(f"Skipping forward: Username not occupied for entity ID {id}")
-            except Exception as e:
-                print(f"{Fore.RED}Skipping forward: Private/Inaccessible{Style.RESET_ALL}")
+    async with TelegramClient(phone, api_id, api_hash) as client:
+        async for message in client.iter_messages(channel_name):
+            if message.forward is not None:
+                try:
+                    id = message.forward.original_fwd.from_id
+                    if id is not None:
+                        try:
+                            ent = await client.get_entity(id)
+                            target_channel_entity = await client.get_entity(message.to_id.channel_id)
+                            target_channel_title = target_channel_entity.title
+                            l.append([ent.title, target_channel_title])
+                            source_url = f"https://t.me/{ent.username}"
+                            source_urls.append(source_url)
+                            count += 1
+                            print(f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
+                        except ValueError as e:
+                            print("Skipping forward:", str(e))
+                        except telethon.errors.rpcerrorlist.UsernameNotOccupiedError:
+                            print(f"Skipping forward: Username not occupied for entity ID {id}")
+                except Exception as e:
+                    print(f"{Fore.RED}Skipping forward: Private/Inaccessible{Style.RESET_ALL}")
 
     df = pd.DataFrame(l, columns=['From', 'To'])
     source_df = pd.DataFrame(source_urls, columns=['SourceURL'])
@@ -72,7 +72,7 @@ async def main():
         print("CSV files created for", channel)
         print()
 
-with client:
-    client.loop.run_until_complete(main())
+if __name__ == '__main__':
+    asyncio.run(main())
 
 print('Forwards scraped successfully.')
