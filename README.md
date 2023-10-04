@@ -1,9 +1,9 @@
 # Telerecon
 Telerecon is a comprehensive OSINT reconnaissance framework for researching and investigating Telegram.
 
-Input a target username, and Telerecon efficiently gathers profile metadata, account activity, user messages, extracts potential selectors, identifies named entities, constructs an associate network map, and creates an EXIF metadata geo-map, amongst various other analytics. 
+Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
 
-Other features of Telerecon includes scraping Telegram channels/groups, automated forward mapping, and conducting channel member/subscriber censuses.
+Other features of Telerecon include scraping Telegram channels/groups, automated forward mapping for exploratory network analysis, and conducting channel a community censuses.
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/096861e9-5f4d-42cb-8360-9a59676460ce)
 
