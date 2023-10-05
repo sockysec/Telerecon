@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
         ("Racism/Hate Speech", [
 
-            "moslem" , "mulatto", "sand nigger", "sandnig", "nigger", "mogger", "negroid", "jew", "kike", "zogbot", "chink", "paki", "mudslime", "mudshit", "femoid", "foid", "mongrel", 
+            "moslem", "mulatto", "sand nigger", "sandnig", "nigger", "mogger", "negroid", "jew", "kike", "zogbot", "chink", "paki", "mudslime", "mudshit", "femoid", "foid", "mongrel", 
 
             "towel 	head", "towelhead", "moslems", "mulattos", "muzzies", "sand niggers", "sandnigs", "shit skin", "shitskin", "niggers", "moggers", "negroids", "jews", "kikes", "zogbots",
 
@@ -196,7 +196,7 @@ if __name__ == "__main__":
 
         ("Indicators - Sovreign Citizen", [
 
-            "sovreign citizen" "free man", "free woman", "flesh and blood", "common law", "admiralty law", "non-resident alien", "14th amendment", "legal fiction", 
+            "sovreign citizen", "free man", "free woman", "flesh and blood", "common law", "admiralty law", "non-resident alien", "14th amendment", "legal fiction", 
 
             "notice of understanding and intent", "affidavit of truth", "Birth Certificate Bond", "Non-Domiciled Resident", "Natural Law", "Freeman Passport", "Constitutional Sheriff",
 
