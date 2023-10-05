@@ -12,3 +12,4 @@ colorama
 cryptg
 wordcloud
 validate_email_address
+networkx
