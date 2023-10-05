@@ -144,7 +144,8 @@ if __name__ == "__main__":
         "my phone number", "my email", "my address", "my home address", "my house", "my school", "my university",
         "my job", "my profession", "work at", "new job", "job interview", "to school at", "to university at",
         "just visited", "went down to", "just visiting", "going down to", "went up to", "went down to", "my hometown",
-        "living in", "live in", "moved to", "moved to", "my home", "my mother", "my father", "my stepmother", "my stepfather"
+        "living in", "live in", "moved to", "moved to", "my home", "my mother", "my father", "my stepmother", "my stepfather", 
+        "where I work", "where I live", "where I grew up",
     ]
 
     # Get the target username from the user
