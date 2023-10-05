@@ -120,7 +120,8 @@ Targeting
 - Running the advanced reports and analytics (9, 10, 11, 12, 13) assume that you have already collected the target user's posts.
 - You can speed up collection by decreasing the "REQUEST_DELAY =" however this may result in temporary API rate limiting.
 - Choosing to download media will significantly slow down collection.
-- While most advanced reports are designed to analyse a users messages, most will also work on a channel.
+- While most advanced reports are designed to analyse a users messages, most will also work on a channel (Options 10, 13, and 15)
+- To minimise system specific errors, utilise the pre-built TradeLabs OSINT VM https://www.tracelabs.org/initiatives/osint-vm
 
 
 # Known Issues
