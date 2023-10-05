@@ -65,7 +65,7 @@ async def main():
         if not os.path.exists(output_directory):
             os.makedirs(output_directory)
 
-        csv_filename = f'{output_directory}/{channel_name}_content.csv'
+        csv_filename = f'{output_directory}/{channel_name}_messages.csv'
         print(f'Scraping content from {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}...')
 
         content = await scrape_channel_content(channel_name)
