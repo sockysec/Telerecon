@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```
  python3 -m spacy download en_core_web_sm 
 ```
-5. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number.
+5. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number. (It is recommended that you do this with a burner phone/sock puppet account).
 6. In terminal, navigate to the installation directory (eg, Telerecon-main) and run setup.py
 ```
 python3 setup.py
