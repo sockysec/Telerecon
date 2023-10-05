@@ -13,6 +13,11 @@ Other features of Telerecon include scraping Telegram channels/groups, automated
 
 1. Download all files and save them to the directory of your choice.
 
+If you have git installed, navigate to the desired directory, open in Terminal and run the following command.
+```
+git clone https://github.com/sockysec/Telerecon.git
+```  
+
 2. Ensure your system is up to date (recommended)
 ```
 sudo apt update
@@ -92,7 +97,7 @@ python3 launcher.py
 
 # Example Targeting Workflow
 
-**Directory creation** - Telerecon allows you to search across multiple channels and groups for a target user's activity/posts. However, this requires the creation of a directory of target Telegram channels to search across (Ex. This may be all chats in a geographic area or a target ideological grouping.). If you know the URLs of specific channels, you can manually create your own directory by simply making a csv/txt file with the list of target Telegram URL's on each line. Option '6' can allow you to scrape URLs from pre-existing Telegram directories (i.e. nzdirectory) to quickly build a list. Option '7' utilizes exploratory forward mapping to discover related channels/chat groups and produce a list. Option '8' can be used for a more comprehensive list.
+**Directory creation** - Telerecon allows you to search across multiple channels and groups for a target user's activity/posts. However, this requires the creation of a directory of target Telegram channels to search across (Ex. This may be all chats in a geographic area or a target ideological grouping.). If you know the URLs of specific channels, you can manually create your own directory by simply making a csv/txt file with the list of target Telegram URL's on each line. Option '6' can allow you to scrape URLs from pre-existing Telegram directories (i.e. nzdirectory) to quickly build a list. Option '7' utilizes exploratory forward mapping to discover related channels/chat groups and produce a list. Option '8' can be used for a more comprehensive list. **This file must be placed in the primary Telerecon directory**.
 
 Targeting
 1. Run launcher.py
