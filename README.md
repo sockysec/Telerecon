@@ -1,9 +1,9 @@
 # Telerecon
-Telerecon is a comprehensive OSINT reconnaissance framework for researching and investigating Telegram.
+Telerecon is a comprehensive OSINT reconnaissance framework for researching, investigating, and scraping Telegram.
 
-Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, ideological indicators, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
+For example: Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, ideological indicators, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
 
-Other features of Telerecon include scraping Telegram channels/groups, automated forward mapping for exploratory network analysis, and conducting channel a community censuses.
+Other features of Telerecon include scraping Telegram channels/groups, automated forward mapping for exploratory network analysis, and conducting channel a community census
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/4111b36b-092c-44cf-8094-e92ec011f2da)
 
@@ -38,8 +38,11 @@ pip install -r requirements.txt
 python3 setup.py
 ```
 7. As prompted by the script, input your Telegram API key, hash, and phone number (these details will be saved locally).
+   
 8. Telegram may message you a verification code, to confirm setup. If so input the verification code.
+   
 9. If prompted to "Please enter your phone (or bot token):" then you may need to re-input your account phone number. Telegram will then message you the code (in Telegram) to verify your login "Please enter the code you received:".
+    This may not occur until you first try to use the script functions for the first time.
 
 10. Telerecon is now installed, run launcher.py to use.
 
