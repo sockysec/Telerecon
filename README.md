@@ -1,11 +1,12 @@
 # Telerecon
 Telerecon is a comprehensive OSINT reconnaissance framework for researching and investigating Telegram.
 
-Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
+Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, ideological indicators, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
 
 Other features of Telerecon include scraping Telegram channels/groups, automated forward mapping for exploratory network analysis, and conducting channel a community censuses.
 
-![image](https://github.com/sockysec/Telerecon/assets/121141737/096861e9-5f4d-42cb-8360-9a59676460ce)
+![image](https://github.com/sockysec/Telerecon/assets/121141737/4111b36b-092c-44cf-8094-e92ec011f2da)
+
 
 
 # Installation 
@@ -86,6 +87,7 @@ python3 launcher.py
 
 14. **Conduct a subscriber census across a list of target channels:** Iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
 
+15. **Parse user messages for ideological indicators:** Assumes user messages have already been collected. Outputs a report containing keyphrases that could indicate ideology (the report includes citations for ease of verification). Key phrases are customizable by editing the script. Default function parses text to detect hate speech/racism, white-identity-motivated extremism, conspiratorial ideation, sovereign citizen, and incel terminology. Note: Context is key, mentioning a keyword does not make a user ideologically motivated. However, this function is still useful for rapidly assessing a target.
 
 # Example Targeting Workflow
 
@@ -101,6 +103,7 @@ Targeting
 7. Select '11', input target username (i.e. @Johnsmith). After running, to the launcher.
 8. Select '12', input target username (i.e. @Johnsmith) and define a timezone. After running, return to the launcher.
 7. Select '13', input target username (i.e. @Johnsmith). After running, return to the launcher.
+8. Select '15', input target username (i.e. @Johnsmith).
    
 
 # Usage Notes
