@@ -111,7 +111,8 @@ Targeting
 
 - Running the advanced reports and analytics (9, 10, 11, 12, 13) assume that you have already collected the target user's posts.
 - You can speed up collection by decreasing the "REQUEST_DELAY =" however this may result in temporary API rate limiting.
-- Choosing to download media will significantly slow down collection. 
+- Choosing to download media will significantly slow down collection.
+- While most advanced reports are designed to analyse a users messages, most will also work on a channel.
 
 
 # Known Issues
