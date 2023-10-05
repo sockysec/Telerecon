@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
             "accelerate", "accelerationist", "sieg heil", "siege pill", "siege pilled", "white power", "goyim", "zyklon B", "14 words", "race traitors", "race traitor", "day of the rope",
 
-            "waffen", "iron pill", "iron pilled", "ZOG", "Z.O.G.", "terrorgram", "national socialist", "national socialism", "⚡", "//", "Khazarian", "Ashkenazis"
+            "waffen", "iron pill", "iron pilled", "ZOG", "Z.O.G.", "terrorgram", "national socialist", "national socialism", "⚡", "//", "Khazarian", "Ashkenazis",
 
 
 
