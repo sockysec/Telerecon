@@ -90,7 +90,9 @@ options = {
 
     'Extract named entities from collected user messages': 'ner.py',
 
-    'Conduct a subscriber census across a list of target channels': 'census.py'
+    'Conduct a subscriber census across a list of target channels': 'census.py',
+    
+    'Parse user messages to extract ideological indicators': 'indicators.py'
 
 }
 
