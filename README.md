@@ -53,9 +53,9 @@ python3 launcher.py
 
 2. **Check user activity across a list of channels:**  Iterate through a txt/csv directory list of Telegram channels, looking for any messages by the target username. (Assumes directory list is in the primary Telerecon directory).
 
-3. **Collect user messages from a target channel:**  Collect and compile any messages from the target username in a target channel. Option to also download media. 
+3. **Collect user messages from a target channel:**  Collect and compile any messages from the target username in a target channel. Option to also download media (NOTE - media download slows collection).
 
-4. **Collect user messages from a list of target channels:**  iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media. (Assumes directory list is in the primary Telerecon directory).
+4. **Collect user messages from a list of target channels:**  iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media (NOTE - media download slows collection). Assumes directory list is in the primary Telerecon directory.
 
 5. **Scrape all messages within a channel:**  Collect and compile messages in a target channel. Download full history, last 24 hours, or custom date range.
 
