@@ -54,6 +54,8 @@ python3 launcher.py
 ```
 2. Select an option from the menu
 
+If overwhelmed, try using the sample targeting workflow provided later in the Readme.
+
 # Options
 
 1. **Get user information:**  Search a @username and return any public user information (username, first name, last name, phone number, UserID, Bio, Online status, profile picture).
