@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from wordcloud import WordCloud, STOPWORDS
 from matplotlib.backends.backend_pdf import PdfPages
 from pytz import timezone
 from tzlocal import get_localzone  # Added to get the system's local timezone
@@ -54,15 +53,6 @@ pivot_dayofmonth = df_grouped_dayofmonth.pivot(index='DayOfMonth', columns='User
 # Convert non-string values in 'Text' column to string
 df['Text'] = df['Text'].astype(str)
 
-# Add your custom stopwords to the STOPWORDS set
-custom_stopwords = {"http", "https", "www", "nan"}  # Replace with your own stopwords
-stopwords = set(STOPWORDS)
-stopwords.update(custom_stopwords)
-
-# Create a word cloud from the text data
-text_data = " ".join(df['Text'])
-wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stopwords, max_words=100).generate(text_data)
-
 # Save the visualizations to a single PDF in the target user's directory
 output_pdf = f'Collection/{target_username.strip("@")}/visualization_report_{target_username.strip("@")}.pdf'
 with PdfPages(output_pdf) as pdf:
@@ -111,13 +101,6 @@ with PdfPages(output_pdf) as pdf:
     plt.grid(True)
     plt.xticks(rotation=0)
     plt.tight_layout()
-    pdf.savefig()
-
-    # Word cloud
-    plt.figure(figsize=(10, 5))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    plt.title('Word Cloud of Commonly Used Words')
     pdf.savefig()
 
 print(f"PDF report created: {output_pdf}")
