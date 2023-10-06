@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ```
  python3 -m spacy download en_core_web_sm 
 ```
-5. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number. (It is recommended that you do this with a burner phone/sock puppet account).
+5. Obtain your Telegram API details from my.telegram.org noting your API key, hash, and phone number (international format). It is recommended that you do this with a burner phone/sock puppet account.
    
 6. In terminal, navigate to the installation directory (eg, Telerecon-main) and run setup.py
 ```
@@ -41,8 +41,7 @@ python3 setup.py
    
 8. Telegram may message you a verification code, to confirm setup. If so input the verification code.
    
-9. If prompted to "Please enter your phone (or bot token):" then you may need to re-input your account phone number. Telegram will then message you the code (in Telegram) to verify your login "Please enter the code you received:".
-    This may not occur until you first try to use the script functions for the first time.
+9. If prompted to "Please enter your phone (or bot token):" then you may need to re-input your account phone number (international format). Telegram will then message you the code (in Telegram) to verify your login "Please enter the code you received:". This may not occur until you first try to use the script functions for the first time.
 
 10. Telerecon is now installed, run launcher.py to use.
 
@@ -118,11 +117,12 @@ The analysis will be output into the Collection folder.
 
 # Usage Notes
 
+- Phone number should always be input in an international format beginning with +
 - Running the advanced reports and analytics (9, 10, 11, 12, 13) assume that you have already collected the target user's posts.
 - You can speed up collection by decreasing the "REQUEST_DELAY =" however this may result in temporary API rate limiting.
 - Choosing to download media will significantly slow down collection.
 - While most advanced reports are designed to analyse a users messages, most will also work on a channel (Options 10, 13, and 15)
-- To minimise system specific errors, utilise the pre-built TradeLabs OSINT VM https://www.tracelabs.org/initiatives/osint-vm
+- To minimise system-specific errors, utilise the pre-built TradeLabs OSINT VM https://www.tracelabs.org/initiatives/osint-vm
 
 
 # Known Issues
