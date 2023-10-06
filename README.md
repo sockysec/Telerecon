@@ -13,7 +13,7 @@ Other features of Telerecon include scraping Telegram channels/groups, automated
 
 1. Download all files and save them to the directory of your choice.
 
-If you have git installed, navigate to the desired directory, open in Terminal and run the following command.
+(If you have git installed, this can easily be done by navigating to the desired directory, opening it in Terminal, and running the following command.
 ```
 git clone https://github.com/sockysec/Telerecon.git
 ```  
