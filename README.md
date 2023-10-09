@@ -128,7 +128,7 @@ The analysis will be output into the Collection folder.
 
 
 # Known Issues
-- Return to launcher and rerunning the same script option, can cause a crash. Simply reboot the launcher if this occurs and it will work.
+- Returning to the launcher and rerunning/running certain script options, can cause a crash. Simply reboot the launcher if this occurs and it will work.
 
 
 # Credit
