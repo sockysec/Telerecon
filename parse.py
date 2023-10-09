@@ -137,15 +137,8 @@ def extract_sentences(username, input_csv, output_pdf, target_phrases):
 if __name__ == "__main__":
     target_phrases = [
         # List of target phrases here
-        "my wife", "my husband", "my children", "my kids", "my kid", "my child", "my sibling", "my siblings",
-        "my significant other", "my SO", "my partner", "getting married", "getting engaged", "got married", "got engaged",
-        "got divorced", "getting divorced", "my family", "my spouse", "my little ones", "my little one", "our children",
-        "our kid", "our kids", "our son", "our daughter", "my son", "my daughter", "my birthday", "born in",
-        "my phone number", "my email", "my address", "my home address", "my house", "my school", "my university",
-        "my job", "my profession", "work at", "new job", "job interview", "to school at", "to university at",
-        "just visited", "went down to", "just visiting", "going down to", "went up to", "went down to", "my hometown",
-        "living in", "live in", "moved to", "moved to", "my home", "my mother", "my father", "my stepmother", "my stepfather", 
-        "where I work", "where I live", "where I grew up",
+        "where I work", "where I live", "where I grew up", "my wife", "my husband", "my children", "my kids", "my kid", "my child", "my sibling", "my siblings", "my significant other", "my SO", "my partner", "getting married", "getting engaged", "got married", "got engaged", "got divorced", "getting divorced", "my family", "my spouse", "my little ones", "my little one", "our children", "our kid", "our son", "our daughter", "my son", "my daughter", "my birthday", "born in", "my phone number", "my email", "my address", "my home address", "my house", "my school", "my university", "my job", "my profession", "work at", "new job", "job interview", "to school at", "to university at", "just visited", "went down to", "just visiting", "going down to", "went up to", "my hometown", "living in", "live in", "moved to", "my home", "my mother", "my father", "my stepmother", "my stepfather", "where I work", "where I live", "where I grew up", "my grandchildren", "my grandchild", "my grandson", "my granddaughter", "my brother", "my sister", "my nephew", "my niece", "my uncle", "my aunty", "my parents"
+        
     ]
 
     # Get the target username from the user
