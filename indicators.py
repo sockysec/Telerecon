@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
         ]),
 
-        ("Indicators - Identity Motivated Extremism", [
+        ("Indicators - White Identity Motivated Extremism", [
 
             # List of target phrases for section 2
 
@@ -188,19 +188,23 @@ if __name__ == "__main__":
 
         ("Indicators - Conspiratorial Ideation", [
 
-            "great awakening", "globalist", "globalists", "new world order", "WWG1WGA", "the storm", "chemtrails", "freemasons", "freemason", "illuminati", "deep state",
+            "great awakening", "globalist", "globalists", "new world order", "WWG1WGA", "the storm", "chemtrails", "freemasons", "freemason", "illuminati", "deep state", "the storm",
 
-            "adrenochrome", "cabal", "rothschilds", "nuremberg", "nuremburg", "crimes against humanity", "great reset", "agenda 2030", "agenda 21", "world economic forum", "false flag", 
+            "adrenochrome", "cabal", "rothschilds", "nuremberg", "nuremburg", "crimes against humanity", "great reset", "agenda 2030", "agenda 21", "world economic forum", "false flag",
+
+            "Microchipped", "microchips", "pizzagate", "sheeple", 
 
         ]),
 
-        ("Indicators - Sovreign Citizen", [
+        ("Indicators - Sovereign Citizen", [
 
-            "sovreign citizen", "free man", "free woman", "flesh and blood", "common law", "admiralty law", "non-resident alien", "14th amendment", "legal fiction", 
+            "sovreign citizen", "sovereign citizen", "free man", "free woman", "flesh and blood", "common law", "admiralty law", "non-resident alien", "14th amendment", "legal fiction", 
 
             "notice of understanding and intent", "affidavit of truth", "Birth Certificate Bond", "Non-Domiciled Resident", "Natural Law", "Freeman Passport", "Constitutional Sheriff",
 
-            "Nontaxpayer", "Informed Consent", "Commercial Redemption", "Freemen Standby Act", 
+            "Nontaxpayer", "Informed Consent", "Commercial Redemption", "Freemen Standby Act", "strawman", "man on the land", "non-resident alien", "in admiralty", 
+            
+            "living soul", "letters of marque",
 
 
 
@@ -218,7 +222,7 @@ if __name__ == "__main__":
 
         ("Indicators - Dehumanizing Rhetoric", [
 
-            "parasite", "scum", "demon", "demonic", "souless", "vermin", "parasites", "mongerl", "mongrels", "leeches", "leech", "maggot", "maggots", "parasites", "sub-human",
+            "parasite", "scum", "demon", "demonic", "soulless", "vermin", "parasites", "mongrel", "mongrels", "leeches", "leech", "maggot", "maggots", "parasites", "sub-human",
 
         ]),
 
