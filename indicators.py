@@ -164,7 +164,7 @@ if __name__ == "__main__":
 
             "chinks", "pakis", "mudslimes", "mudshits", "femoids", "mongrels", "towel heads", "towelheads", "spics", "gooks", "rapefugees", "shitskins", "fag", "fags", "faggot", "faggots",
 
-            "groomer", "groomers", "tranny", "trannys", "jewish", "(((",
+            "groomer", "groomers", "tranny", "trannys", "jewish", "(((", "Gibsmedat", "Goy", "soyboy", "gibs", "soyboys",
 
         ]),
 
@@ -182,7 +182,11 @@ if __name__ == "__main__":
 
             "waffen", "iron pill", "iron pilled", "ZOG", "Z.O.G.", "terrorgram", "national socialist", "national socialism", "⚡", "//", "Khazarian", "Ashkenazis",
 
+            "tradwife", "tradthot", "cultural jihad", "pro western values", "pro-western values", "western culture", "kek", "deus vault", "did nothing wrong", "its okay to be white",
 
+            "it's okay to be white", "it's ok to be white", "white is right", "pro-white activism", "coal burner", "race traitor", "race traitors", "6MWNE", "Holocauster", "Holohoax", 
+            
+            "Clown World", "🤡🌎",    
 
         ]),
 
@@ -192,7 +196,7 @@ if __name__ == "__main__":
 
             "adrenochrome", "cabal", "rothschilds", "nuremberg", "nuremburg", "crimes against humanity", "great reset", "agenda 2030", "agenda 21", "world economic forum", "false flag",
 
-            "Microchipped", "microchips", "pizzagate", "sheeple", 
+            "Microchipped", "microchips", "pizzagate", "sheeple", "geotus", 
 
         ]),
 
@@ -204,7 +208,9 @@ if __name__ == "__main__":
 
             "Nontaxpayer", "Informed Consent", "Commercial Redemption", "Freemen Standby Act", "strawman", "man on the land", "non-resident alien", "in admiralty", 
             
-            "living soul", "letters of marque",
+            "living soul", "letters of marque", "Settlor", "Quantam Grammar", "Quantum Grammar", "Strawman", "Magna Carta", "Maritime Law", "Policy Officer", "Postmaster", 
+            
+            "Artifical Construct",  "Artificial Construct", "Lawful Dissent", "In the Private", "living man", "living woman", "Maxim of Law", "Uniform Commercial Code", "Corpus Juris", "Sui Juris", 
 
 
 
@@ -214,10 +220,10 @@ if __name__ == "__main__":
 
             "foid", "femoid", "dog pill", "dog pilled", "red pill", "red pilled", "going ER", "truecel", "incel", "chad", "fakecel",  "black pilled", "blackpilled", "ragefuel", "rape fuel",
 
-            "ropefuel", 
-
-        
-
+            "ropefuel", "Supreme Gentleman", "Elliot Rodger", "braincels", "genetically inferior", "roasties", "SMV", "Sexual Market Value", "have a little fun bEfoRe you go", "red-pilled",
+            
+            "cucks", "Manosphere", "incels", "incel", "Mens Rights Activists", "MGTOW", "Men going their own way", "alpha male", "beta male", "omega male", "gamma male",
+ 
         ]),
 
         ("Indicators - Dehumanizing Rhetoric", [
