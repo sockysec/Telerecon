@@ -186,7 +186,7 @@ if __name__ == "__main__":
 
             "it's okay to be white", "it's ok to be white", "white is right", "pro-white activism", "coal burner", "race traitor", "race traitors", "6MWNE", "Holocauster", "Holohoax", 
             
-            "Clown World", "🤡🌎",    
+            "Clown World", "🤡🌎", "Accelerationist", "James Mason", "Accelerationism",  
 
         ]),
 
