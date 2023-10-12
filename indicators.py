@@ -189,6 +189,20 @@ if __name__ == "__main__":
             "Clown World", "🤡🌎", "Accelerationist", "James Mason", "Accelerationism",  
 
         ]),
+        
+        ("Indicators - Faith Motivated Extremism", [
+
+            # List of target phrases for section 2
+
+            "جهاد", "جهاد", "مرتد", "المرتدين", "الطغاة", "التحالف الصليبي", "جنود الخلافة", "أسود الدولة الإسلامية", "في ظل الخلافة", "تقبل الله الله", "المنهجية المؤيدة للفيتيك", "المنهج النبوي", "المتبقية والتوسع", "موسوعة الجهاد", "دليل المجاهد", "رفيدة", "الدولة الإسلامية", "الخلافة الإسلاميةروافيض", "استيشادي", "باقية من تاتاداد", "التواغيت", "الشريعة", 
+            
+            "Jihad", "holy war", "apostate", "the apostates", "tyrants", "the crusader coalition", "soldiers of the caliphate", "lions of the Islamic State", "in the shadow of the caliphate", 
+            
+            "may God accept him", "the prophetic methodology", "the prophetic methodology", "Remaining and Expanding", "The encyclopedia of Jihad", "The Mujahad’s Handbook", "Rafidha", "Rawafidh", 
+            
+            "Istishaadi", "Baqiya wa tatamaddad", "al-Tawaghit", "shariyah", "A’maq Agency", "Al-hayat", "al-Emarah", "Dabiq",
+     
+        ]),
 
         ("Indicators - Conspiratorial Ideation", [
 
