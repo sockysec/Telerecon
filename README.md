@@ -129,7 +129,7 @@ The analysis will be output into the Collection folder.
 
 # Known Issues
 - Returning to the launcher and rerunning/running certain script options, can cause a crash. Simply reboot the launcher if this occurs and it will work.
-
+- While parsing and tagging works, Arabic language indicators are not printing correctly to PDF.
 
 # Credit
 
