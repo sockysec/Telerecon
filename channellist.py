@@ -13,6 +13,7 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
+
 async def scrape_forwards(channel_name):
     l = []
     source_urls = []
@@ -32,9 +33,10 @@ async def scrape_forwards(channel_name):
                             source_url = f"https://t.me/{ent.username}"
                             source_urls.append(source_url)
                             count += 1
-                            print(f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
+                            print(
+                                f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
                         except ValueError as e:
-                            print("Skipping forward:", str(e))
+                            print("Skipping forward:", e)
                         except telethon.errors.rpcerrorlist.UsernameNotOccupiedError:
                             print(f"Skipping forward: Username not occupied for entity ID {id}")
                 except Exception as e:
@@ -52,7 +54,9 @@ async def scrape_forwards(channel_name):
         channel_name_without_prefix = channel_name_without_prefix.replace('https___t.me_', '')
 
     df.to_csv(os.path.join('Adjacency List', f'{channel_name_without_prefix}.csv'), header=False, index=False)
-    source_df.to_csv(os.path.join('Source URLs', f'{channel_name_without_prefix}SourceURLs.csv'), header=False, index=False)
+    source_df.to_csv(os.path.join('Source URLs', f'{channel_name_without_prefix}SourceURLs.csv'), header=False,
+                     index=False)
+
 
 async def main():
     channels_file = input("Enter the name of the file containing the list of channels (csv or txt): ")
@@ -71,6 +75,7 @@ async def main():
         await scrape_forwards(channel)
         print("CSV files created for", channel)
         print()
+
 
 if __name__ == '__main__':
     asyncio.run(main())

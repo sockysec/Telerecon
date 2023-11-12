@@ -17,8 +17,10 @@ if not os.path.exists("Collection"):
 # Define the REQUEST_DELAY
 REQUEST_DELAY = 1  # Delay in seconds between requests
 
+
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
-    media_directory = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
+    media_directory = os.path.join(user_directory,
+                                   f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
     if not os.path.exists(media_directory):
         os.makedirs(media_directory)
 
@@ -52,7 +54,8 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                     media_path = os.path.join(media_directory, media_filename)
                     await post.download_media(file=media_path)
 
-                content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
+                content.append(
+                    (text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
 
                 # Check if the message is a reply to another message
                 if post.reply_to_msg_id:
@@ -77,24 +80,28 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
                 post_count += 1  # Increment post count
                 if post_count % 10 == 0:
-                    print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+                    print(
+                        f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
 
                 await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
 
             return content, network_data  # Return both content and network data
 
         except (ValueError, errors.FloodWaitError) as ve:
-            print(f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
+            print(
+                f"{Fore.RED}Error – lacking relevant permissions, or channel is not a chat group{Style.RESET_ALL}")  # Red text for errors
             return [], []  # Return empty lists if there's an error
         except Exception as e:
             print(f"{Fore.RED}Error – {e}{Style.RESET_ALL}")  # Red text for errors
             return [], []  # Return empty lists if there's an error
 
+
 async def main():
     print()
     target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
     target_channel = input(f"{Fore.CYAN}Please enter the target channel's @username or invite link: {Style.RESET_ALL}")
-    download_media_option = input(f"{Fore.CYAN}Would you like to download media from the channel (y/n)? {Style.RESET_ALL}")
+    download_media_option = input(
+        f"{Fore.CYAN}Would you like to download media from the channel (y/n)? {Style.RESET_ALL}")
     download_media = download_media_option.lower() == 'y'
     print()
     print(f"{Fore.YELLOW}Scraping data can take some time, please be patient.{Style.RESET_ALL}")
@@ -107,11 +114,14 @@ async def main():
     if not os.path.exists(user_directory):
         os.makedirs(user_directory)
 
-    channel_content, network_data = await scrape_user_messages(target_channel, target_user, user_directory, download_media, sanitized_target_user)
+    channel_content, network_data = await scrape_user_messages(target_channel, target_user, user_directory,
+                                                               download_media, sanitized_target_user)
     message_count = len(channel_content)
 
     if message_count:
-        df = pd.DataFrame(channel_content, columns=['Text', 'Date', 'Username', 'First Name', 'Last Name', 'User ID', 'Views', 'Message URL', 'Channel', 'Media'])
+        df = pd.DataFrame(channel_content,
+                          columns=['Text', 'Date', 'Username', 'First Name', 'Last Name', 'User ID', 'Views',
+                                   'Message URL', 'Channel', 'Media'])
         csv_filename = os.path.join(user_directory, f'{sanitized_target_user}_messages.csv')
         try:
             df.to_csv(csv_filename, index=False)
@@ -141,6 +151,7 @@ async def main():
     if launcher == 'y':
         print('Restarting...')
         exec(open("launcher.py").read())
+
 
 if __name__ == '__main__':
     asyncio.run(main())

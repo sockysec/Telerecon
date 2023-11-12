@@ -18,8 +18,10 @@ if not os.path.exists("Collection"):
 # Define the REQUEST_DELAY
 REQUEST_DELAY = 1  # Delay in seconds between requests
 
+
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
-    media_directory = os.path.join(user_directory, f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
+    media_directory = os.path.join(user_directory,
+                                   f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
     if not os.path.exists(media_directory):
         os.makedirs(media_directory)
 
@@ -40,9 +42,9 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
                     # Check if the message has a sender
                     if post.sender:
-                        username = post.sender.username if post.sender.username else "N/A"
-                        first_name = post.sender.first_name if post.sender.first_name else "N/A"
-                        last_name = post.sender.last_name if post.sender.last_name else "N/A"
+                        username = post.sender.username or "N/A"
+                        first_name = post.sender.first_name or "N/A"
+                        last_name = post.sender.last_name or "N/A"
                         user_id = post.sender.id if post.sender else "N/A"
                     else:
                         # Handle the case when the sender is None
@@ -59,11 +61,12 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                     media = None  # Initialize media as None
                     # Check if the message has media (image or voice message) and download_media is True
                     if post.media and download_media:
-                        media_filename = f'media_{post.id}' 
+                        media_filename = f'media_{post.id}'
                         media_path = os.path.join(media_directory, media_filename)
                         await client.download_media(post, file=media_path)
 
-                    content.append((text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
+                    content.append(
+                        (text, date, username, first_name, last_name, user_id, views, message_url, channel_name, media))
 
                     # Check if the message is a reply to another message
                     if post.reply_to_msg_id:
@@ -85,12 +88,14 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                             timestamp = post.date
 
                             network_data.append((sender_username, sender_first_name, sender_last_name, sender_user_id,
-                                                 receiver_username, receiver_first_name, receiver_last_name, receiver_user_id,
+                                                 receiver_username, receiver_first_name, receiver_last_name,
+                                                 receiver_user_id,
                                                  interaction_type, timestamp))
 
                     post_count += 1  # Increment post count
                     if post_count % 10 == 0:
-                        print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+                        print(
+                            f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
 
                     await asyncio.sleep(REQUEST_DELAY)  # Introduce a delay between requests
                 else:
@@ -109,10 +114,12 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
             print(f"{Fore.RED}An error occurred: {e}{Style.RESET_ALL}")
             return [], []
 
+
 async def main():
     print()
     target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
-    target_list_filename = input(f"{Fore.CYAN}Please enter the filename of the target channel list (csv/txt): {Style.RESET_ALL}")
+    target_list_filename = input(
+        f"{Fore.CYAN}Please enter the filename of the target channel list (csv/txt): {Style.RESET_ALL}")
     download_media_option = input(f"{Fore.CYAN}Would you like to download the target's media (y/n)? {Style.RESET_ALL}")
     download_media = download_media_option.lower() == 'y'
     print()
@@ -136,10 +143,11 @@ async def main():
 
     all_messages = []  # To store messages from all channels
     network_data = []  # To store network map data from all channels
-    
+
     for channel_index, target_channel in enumerate(target_channels, start=1):
         print(f"{Fore.CYAN}Scraping messages from {Fore.LIGHTYELLOW_EX}{target_channel}...{Style.RESET_ALL}")
-        channel_content, channel_network_data = await scrape_user_messages(target_channel, target_user, user_directory, download_media, sanitized_target_user)
+        channel_content, channel_network_data = await scrape_user_messages(target_channel, target_user, user_directory,
+                                                                           download_media, sanitized_target_user)
         message_count = len(channel_content)
         print(f"{Fore.LIGHTYELLOW_EX}{message_count}{Style.RESET_ALL} posts collected")
         print()  # Print a blank line between channels
@@ -149,7 +157,9 @@ async def main():
             network_data.extend(channel_network_data)
 
     if all_messages:
-        df = pd.DataFrame(all_messages, columns=['Text', 'Date', 'Username', 'First Name', 'Last Name', 'User ID', 'Views', 'Message URL', 'Channel', 'Media'])
+        df = pd.DataFrame(all_messages,
+                          columns=['Text', 'Date', 'Username', 'First Name', 'Last Name', 'User ID', 'Views',
+                                   'Message URL', 'Channel', 'Media'])
         csv_filename = os.path.join(user_directory, f'{sanitized_target_user}_messages.csv')
         try:
             df.to_csv(csv_filename, index=False)
@@ -179,6 +189,7 @@ async def main():
     if launcher == 'y':
         print('Restarting...')
         exec(open("launcher.py").read())
+
 
 if __name__ == '__main__':
     asyncio.run(main())

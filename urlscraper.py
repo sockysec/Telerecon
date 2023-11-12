@@ -12,6 +12,7 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
+
 async def main():
     client = TelegramClient(phone, api_id, api_hash)
 
@@ -21,7 +22,8 @@ async def main():
         await client.send_code_request(phone)
         await client.sign_in(phone, input('Enter the code: '))
 
-    print(f'{Fore.CYAN}Please enter a target Telegram channel (e.g. https://t.me/{Fore.LIGHTYELLOW_EX}your_channel{Fore.CYAN}):{Style.RESET_ALL}\n')
+    print(
+        f'{Fore.CYAN}Please enter a target Telegram channel (e.g. https://t.me/{Fore.LIGHTYELLOW_EX}your_channel{Fore.CYAN}):{Style.RESET_ALL}\n')
     print()
 
     while True:
@@ -32,7 +34,7 @@ async def main():
             if answer == 'y':
                 print(f'Scraping URLs from {channel_name}...')
                 break
-        except:
+        except Exception:
             continue
 
     urls = set()  # Use a set to deduplicate URLs
@@ -43,19 +45,18 @@ async def main():
                 if isinstance(entity, MessageEntityTextUrl):
                     url = entity.url
                     if 'https://t.me/' in url:
-                        match = re.match(r'https?://t\.me/([^/\s]+)/?', url)
-                        if match:
-                            channel_link = f'https://t.me/{match.group(1)}'
+                        if match := re.match(
+                            r'https?://t\.me/([^/\s]+)/?', url
+                        ):
+                            channel_link = f'https://t.me/{match[1]}'
                             urls.add(channel_link)
-                            print(f"URL - {Fore.CYAN}https://t.me/{match.group(1)}{Style.RESET_ALL}")
-        else:
-            if message.text and isinstance(message.text, str):
-                regex = r'https?://t\.me/([^/\s]+)/?'
-                matches = re.findall(regex, message.text)
-                for match in matches:
-                    channel_link = f'https://t.me/{match}'
-                    urls.add(channel_link)
-                    print(f"URL - {Fore.CYAN}https://t.me/{match}{Style.RESET_ALL}")
+                            print(f"URL - {Fore.CYAN}https://t.me/{match[1]}{Style.RESET_ALL}")
+        elif message.text and isinstance(message.text, str):
+            matches = re.findall(r'https?://t\.me/([^/\s]+)/?', message.text)
+            for match in matches:
+                channel_link = f'https://t.me/{match}'
+                urls.add(channel_link)
+                print(f"URL - {Fore.CYAN}https://t.me/{match}{Style.RESET_ALL}")
 
     urls_folder = 'URLs'
     os.makedirs(urls_folder, exist_ok=True)
@@ -65,6 +66,7 @@ async def main():
         file.write('\n'.join(urls))
 
     print(f'URLs scraped successfully. Saved to: {output_filename}')
+
 
 if __name__ == '__main__':
     asyncio.run(main())
