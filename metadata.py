@@ -6,9 +6,11 @@ import folium
 from folium.plugins import MarkerCluster
 import unicodedata
 
+
 # Function to remove non-alphanumeric characters from a string
 def remove_non_alphanumeric(text):
     return ''.join(char for char in text if char.isalnum())
+
 
 # Function to extract metadata from an image
 def extract_metadata(image_path):
@@ -20,6 +22,7 @@ def extract_metadata(image_path):
 
     return metadata
 
+
 # Function to extract GPS metadata from an image
 def extract_gps_metadata(image_path):
     try:
@@ -30,6 +33,7 @@ def extract_gps_metadata(image_path):
         gps_info = None
 
     return gps_info
+
 
 # Function to parse and format GPS/Geo data
 def parse_gps_info(gps_info):
@@ -43,11 +47,12 @@ def parse_gps_info(gps_info):
 
     return gps_data
 
+
 # Main function
 if __name__ == "__main__":
     # Ask the user for a target @Username
     target_username = input("Enter the target @Username: ").strip()
-    
+
     # Remove "@" symbol if present
     if target_username.startswith("@"):
         target_username = target_username[1:]
@@ -77,9 +82,7 @@ if __name__ == "__main__":
             if filename.endswith((".jpg", ".jpeg", ".png", ".gif")):
                 image_path = os.path.join(media_directory, filename)
                 metadata = extract_metadata(image_path)
-                gps_info = extract_gps_metadata(image_path)
-
-                if gps_info:
+                if gps_info := extract_gps_metadata(image_path):
                     gps_found = True
                     gps_data = parse_gps_info(gps_info)
                     author_bytes = metadata.get(315, "N/A")  # Author tag ID (bytes or string)
@@ -93,7 +96,7 @@ if __name__ == "__main__":
 
                     # Remove non-alphanumeric characters from author name
                     author = remove_non_alphanumeric(author)
-                    
+
                     date_time = metadata.get(306, "N/A")  # DateTimeOriginal tag ID
                     camera = metadata.get(271, "N/A")  # Make tag ID
                     gps_data.update({
@@ -149,7 +152,7 @@ if __name__ == "__main__":
         my_map.save(map_filename)
 
     print(f"GPS metadata analysis completed. Results saved to {output_csv_file}")
-    
+
     # Ask if the user wants to return to the launcher
     launcher = input('Do you want to return to the launcher? (y/n)')
 

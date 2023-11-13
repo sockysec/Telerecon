@@ -38,7 +38,8 @@ pivot_daily = df_grouped_daily.pivot(index='Date', columns='Username', values='p
 df['DayOfWeek'] = df['Date'].dt.day_name()
 df_grouped_dayofweek = df.groupby(['DayOfWeek', 'Username']).size().reset_index(name='post_count_dayofweek')
 desired_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-pivot_dayofweek = df_grouped_dayofweek.pivot(index='DayOfWeek', columns='Username', values='post_count_dayofweek').fillna(0)
+pivot_dayofweek = df_grouped_dayofweek.pivot(index='DayOfWeek', columns='Username',
+                                             values='post_count_dayofweek').fillna(0)
 
 # Reorder the days of the week
 pivot_dayofweek = pivot_dayofweek.reindex(desired_order, axis=0)
@@ -48,7 +49,8 @@ df['DayOfMonth'] = df['Date'].dt.day
 df_grouped_dayofmonth = df.groupby(['DayOfMonth', 'Username']).size().reset_index(name='post_count_dayofmonth')
 
 # Pivot the data for the third graph (posting frequency by day of the month)
-pivot_dayofmonth = df_grouped_dayofmonth.pivot(index='DayOfMonth', columns='Username', values='post_count_dayofmonth').fillna(0)
+pivot_dayofmonth = df_grouped_dayofmonth.pivot(index='DayOfMonth', columns='Username',
+                                               values='post_count_dayofmonth').fillna(0)
 
 # Convert non-string values in 'Text' column to string
 df['Text'] = df['Text'].astype(str)

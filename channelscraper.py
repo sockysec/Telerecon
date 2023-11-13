@@ -9,6 +9,7 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
+
 async def scrape_channel_content(channel_name):
     async with TelegramClient(phone, api_id, api_hash) as client:
         try:
@@ -20,12 +21,10 @@ async def scrape_channel_content(channel_name):
                 post_count += 1
 
                 text = post.text or ""
-                sender = post.sender
-
-                if sender:
+                if sender := post.sender:
                     if isinstance(sender, types.User):
-                        username = sender.username if sender.username else "N/A"
-                        first_name = sender.first_name if sender.first_name else "N/A"
+                        username = sender.username or "N/A"
+                        first_name = sender.first_name or "N/A"
                         last_name = sender.last_name if last_name else "N/A"
                         user_id = sender.id
                     else:
@@ -45,7 +44,8 @@ async def scrape_channel_content(channel_name):
                 content.append((text, username, first_name, last_name, user_id, views, message_url))
 
                 if post_count % 10 == 0:
-                    print(f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
+                    print(
+                        f"{Fore.WHITE}{post_count} Posts scraped in {Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}")
 
             return content
 
@@ -53,9 +53,11 @@ async def scrape_channel_content(channel_name):
             print(f"An error occurred: {Fore.RED}{e}{Style.RESET_ALL}")
             return []
 
+
 async def main():
     try:
-        channel_name = input(f"{Fore.CYAN}Please enter a target Telegram channel (e.g., https://t.me/{Fore.LIGHTYELLOW_EX}your_channel{Style.RESET_ALL}):\n")
+        channel_name = input(
+            f"{Fore.CYAN}Please enter a target Telegram channel (e.g., https://t.me/{Fore.LIGHTYELLOW_EX}your_channel{Style.RESET_ALL}):\n")
         print(f'You entered "{Fore.LIGHTYELLOW_EX}{channel_name}{Style.RESET_ALL}"')
         answer = input('Is this correct? (y/n)')
         if answer != 'y':
@@ -71,10 +73,12 @@ async def main():
         content = await scrape_channel_content(channel_name)
 
         if content:
-            df = pd.DataFrame(content, columns=['Text', 'Username', 'First Name', 'Last Name', 'User ID', 'Views', 'Message URL'])
+            df = pd.DataFrame(content, columns=['Text', 'Username', 'First Name', 'Last Name', 'User ID', 'Views',
+                                                'Message URL'])
             try:
                 df.to_csv(csv_filename, index=False)
-                print(f'Successfully scraped and saved content to {Fore.LIGHTYELLOW_EX}{csv_filename}{Style.RESET_ALL}.')
+                print(
+                    f'Successfully scraped and saved content to {Fore.LIGHTYELLOW_EX}{csv_filename}{Style.RESET_ALL}.')
             except Exception as e:
                 print(f"An error occurred while saving to CSV: {Fore.RED}{e}{Style.RESET_ALL}")
         else:
@@ -82,6 +86,7 @@ async def main():
 
     except Exception as e:
         print(f"An error occurred: {Fore.RED}{e}{Style.RESET_ALL}")
+
 
 if __name__ == '__main__':
     asyncio.run(main())

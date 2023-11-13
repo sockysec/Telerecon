@@ -31,7 +31,7 @@ else:
         sender_username = row['Sender_Username']
         sender_first_name = row['Sender_FirstName']
         sender_last_name = row['Sender_LastName']
-        
+
         receiver_user_id = row['Receiver_UserID']
         receiver_username = row['Receiver_Username']
         receiver_first_name = row['Receiver_FirstName']
@@ -50,7 +50,7 @@ else:
     for _, row in network_data.iterrows():
         sender_user_id = row['Sender_UserID']
         receiver_user_id = row['Receiver_UserID']
-        
+
         # Create or update the interaction count
         if (sender_user_id, receiver_user_id) in interaction_count:
             interaction_count[(sender_user_id, receiver_user_id)] += 1
@@ -62,10 +62,10 @@ else:
 
     # Create the network visualization with improved styling and dynamic layout
     plt.figure(figsize=(14, 10))
-    
+
     # Customize the spring layout with better spacing
     pos = nx.spring_layout(G, seed=42, k=0.15, iterations=50)  # Adjust 'k' and 'iterations' as needed
-    
+
     labels = nx.get_node_attributes(G, 'label')
     interactions = nx.get_edge_attributes(G, 'interactions')
     edge_labels = {(u, v): str(interactions[(u, v)]) for u, v in G.edges}
@@ -77,7 +77,7 @@ else:
     edge_color = 'gray'
     font_size = 10
     font_color = 'black'
-    
+
     # Draw nodes, edges, labels, and edge labels
     nx.draw_networkx_nodes(G, pos, node_size=node_size, node_color=node_color)
     nx.draw_networkx_edges(G, pos, width=edge_width, edge_color=edge_color)
@@ -92,7 +92,7 @@ else:
         x = (pos[u][0] + pos[v][0]) / 2  # Calculate x-coordinate
         y = (pos[u][1] + pos[v][1]) / 2  # Calculate y-coordinate
         plt.text(x, y, label, size=font_size, color=font_color, ha='center', va='center')
-    
+
     plt.title(f"User Interaction Network for {target_username}")
 
     # Save the visualization to a file

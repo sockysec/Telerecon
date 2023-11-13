@@ -7,11 +7,13 @@ from reportlab.lib.styles import getSampleStyleSheet
 from collections import Counter
 import os
 
+
 # Function to create the target directory if it doesn't exist
 def create_target_directory(target_username):
     target_dir = f'Collection/{target_username}'
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
+
 
 # Load the CSV file into a pandas DataFrame based on the target username
 target_username = input("Enter the target username: ")
@@ -26,15 +28,19 @@ df = pd.read_csv(csv_file)
 # Load the spaCy NER model
 nlp = spacy.load('en_core_web_sm')
 
+
 # Preprocessing function
 def preprocess_text(text):
     if isinstance(text, str):
         text = re.sub(r'http\S+', '', text)  # Remove URLs
         text = re.sub(r'[^a-zA-Z0-9\s]', '', text)  # Remove non-alphanumeric characters
-        text = re.sub(r'(?<=\w)[^\w\s]+(?=\w)', ' ', text)  # Replace punctuation between alphanumeric characters with spaces
+        text = re.sub(r'(?<=\w)[^\w\s]+(?=\w)', ' ',
+                      text)  # Replace punctuation between alphanumeric characters with spaces
     return text
 
+
 # Dictionary to store named entities of each category with counts
+import contextlib
 entity_categories = {
     'PERSON': Counter(),
     'ORG': Counter(),
@@ -51,15 +57,13 @@ for index, row in df.iterrows():
     if isinstance(text, str):
         preprocessed_text = preprocess_text(text)
 
-        try:
+        with contextlib.suppress(Exception):
             doc = nlp(preprocessed_text)
             entities = [(ent.text, ent.label_) for ent in doc.ents]
             for entity, label in entities:
                 if label in entity_categories:
                     entity_categories[label][entity] += 1
 
-        except Exception as e:
-            pass
 
 # Create and export PDF with sorted entity tags
 def export_entities_to_pdf(entity_categories, filename='entity_tags.pdf'):
@@ -76,10 +80,17 @@ def export_entities_to_pdf(entity_categories, filename='entity_tags.pdf'):
             sorted_entities = sorted(entities.items(), key=lambda x: x[1], reverse=True)
             entity_str = ", ".join([f"{entity} (x{count})" for entity, count in sorted_entities])
             category_display = category_mapping.get(category, category)
-            story.append(Paragraph(f"<b>{category_display} Entities:</b> {entity_str}", styles["Normal"]))
-            story.append(Paragraph("<br/><br/>", styles["Normal"]))  # Add space between categories
-
+            story.extend(
+                (
+                    Paragraph(
+                        f"<b>{category_display} Entities:</b> {entity_str}",
+                        styles["Normal"],
+                    ),
+                    Paragraph("<br/><br/>", styles["Normal"]),
+                )
+            )
     doc.build(story)
+
 
 # Export entities to PDF
 export_entities_to_pdf(entity_categories)

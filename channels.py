@@ -10,6 +10,7 @@ api_id = ds.apiID
 api_hash = ds.apiHash
 phone = ds.number
 
+
 async def main():
     client = TelegramClient(phone, api_id, api_hash)
     await client.start()
@@ -26,7 +27,7 @@ async def main():
             if answer == 'y':
                 print('Scraping forwards from', channel_name, '...')
                 break
-        except:
+        except Exception:
             continue
 
     l = []
@@ -46,9 +47,10 @@ async def main():
                         source_url = f"https://t.me/{ent.username}"
                         source_urls.append(source_url)
                         count += 1
-                        print(f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
+                        print(
+                            f"From {Fore.CYAN + ent.title + Style.RESET_ALL} to {Fore.YELLOW + target_channel_title + Style.RESET_ALL}")
                     except ValueError as e:
-                        print("Skipping forward:", str(e))
+                        print("Skipping forward:", e)
             except Exception as e:
                 print(f"{Fore.RED}Skipping forward: Private/Inaccessible{Style.RESET_ALL}")
 
@@ -66,6 +68,7 @@ async def main():
 
     await client.disconnect()
 
+
 if __name__ == '__main__':
     asyncio.run(main())
 
@@ -82,4 +85,3 @@ launcher = input('Do you want to return to the launcher? (y/n)')
 if launcher == 'y':
     print('Restarting...')
     exec(open("launcher.py").read())
-
