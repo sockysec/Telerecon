@@ -25,7 +25,7 @@ async def scrape_channel_content(channel_name):
                     if isinstance(sender, types.User):
                         username = sender.username or "N/A"
                         first_name = sender.first_name or "N/A"
-                        last_name = sender.last_name if last_name else "N/A"
+                        last_name = sender.last_name if sender.last_name else "N/A"
                         user_id = sender.id
                     else:
                         username = "N/A"
