@@ -100,7 +100,7 @@ If overwhelmed, try using the sample targeting workflow provided later in the Re
 
 15. **Parse user messages for ideological indicators:** Assumes user messages have already been collected. Outputs a report containing keyphrases that could indicate ideology (the report includes citations for ease of verification). Key phrases are customizable by editing the script. Default function parses text to detect hate speech/racism, white-identity-motivated extremism, conspiratorial ideation, sovereign citizen, and incel terminology. Note: Context is key, mentioning a keyword does not make a user ideologically motivated. However, this function is still useful for rapidly assessing a target.
     
-16. **Parse user messages for indicators of capability and violent intent:** Assumes user messages have already been collected. Outputs a threat assessment containing keyphrases that could indicate capability or intent (the report includes citations for ease of verification). Indiciators of capability are measured a regex proximity search looking for the target discussing having or seeking to accquire weapons/capability. Indicators of violent intent is detected by the mention of specific threatening phrases. While this method is not perfect, and may generate some noise it is still highly useful for repidly conducting a threat assessment. The Key phrases are customizable by editing the script.
+16. **Parse user messages for indicators of capability and violent intent:** Assumes user messages have already been collected. Outputs a threat assessment containing keyphrases that could indicate capability or intent (the report includes citations for ease of verification). Indicators of capability are measured by a regex proximity search looking for the target discussing having or seeking to acquire weapons/capability. Indicators of violent intent is detected by the mention of specific threatening phrases. While this method is not perfect and may generate some noise it is still highly useful for rapidly conducting a threat assessment. The Key phrases are customizable by editing the script.
 
 ![image](https://github.com/sockysec/Telerecon/assets/121141737/ea8317ad-f283-4647-b104-2a63d3c2fdb9)
 
@@ -120,6 +120,7 @@ Targeting
 8. Select '12', input target username (i.e. @Johnsmith) and define a timezone. After running, return to the launcher.
 7. Select '13', input target username (i.e. @Johnsmith). After running, return to the launcher.
 8. Select '15', input target username (i.e. @Johnsmith).
+9. Select '16', input target username (i.e. @Johnsmith).
 
 The analysis will be output into the Collection folder.
 
