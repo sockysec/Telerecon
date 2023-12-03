@@ -1,11 +1,12 @@
 # Telerecon
 Telerecon is a comprehensive OSINT reconnaissance framework for researching, investigating, and scraping Telegram.
 
-For example: Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, ideological indicators, identifying named entities, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
+For example: Input a target username, and Telerecon efficiently crawls across multiple chats gathering profile metadata, account activity, user messages, extracting potential selectors, ideological indicators, identifying named entities, indicators of capability and violent intent, constructing a network map of possible associates, and a EXIF metadata geo-map, amongst various other analytics. 
 
 Other features of Telerecon include scraping Telegram channels/groups, automated forward mapping for exploratory network analysis, and conducting a channel community census.
 
-![image](https://github.com/sockysec/Telerecon/assets/121141737/4111b36b-092c-44cf-8094-e92ec011f2da)
+![image](https://github.com/sockysec/Telerecon/assets/121141737/2d5846f3-1096-4db6-87df-1a80d0527dde)
+
 
 
 
@@ -98,6 +99,11 @@ If overwhelmed, try using the sample targeting workflow provided later in the Re
 14. **Conduct a subscriber census across a list of target channels:** Iterate through a txt/csv directory list of Telegram channels, reporting the number of subscribers/members.
 
 15. **Parse user messages for ideological indicators:** Assumes user messages have already been collected. Outputs a report containing keyphrases that could indicate ideology (the report includes citations for ease of verification). Key phrases are customizable by editing the script. Default function parses text to detect hate speech/racism, white-identity-motivated extremism, conspiratorial ideation, sovereign citizen, and incel terminology. Note: Context is key, mentioning a keyword does not make a user ideologically motivated. However, this function is still useful for rapidly assessing a target.
+    
+16. **Parse user messages for indicators of capability and violent intent:** Assumes user messages have already been collected. Outputs a threat assessment containing keyphrases that could indicate capability or intent (the report includes citations for ease of verification). Indiciators of capability are measured a regex proximity search looking for the target discussing having or seeking to accquire weapons/capability. Indicators of violent intent is detected by the mention of specific threatening phrases. While this method is not perfect, and may generate some noise it is still highly useful for repidly conducting a threat assessment. The Key phrases are customizable by editing the script.
+
+![image](https://github.com/sockysec/Telerecon/assets/121141737/ea8317ad-f283-4647-b104-2a63d3c2fdb9)
+
 
 # Example Targeting Workflow
 
