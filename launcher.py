@@ -83,7 +83,7 @@ options = {
 
     'Identify possible user associates via interaction network map': 'network.py',
 
-    'Parse user messages to extract selectors/intel': 'selectors.py',
+    'Parse user messages to extract selectors/intel': 'selector.py',
 
     'Extract GPS data from collected user media': 'metadata.py',
 
