@@ -71,10 +71,10 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                         sender_user_id = original_message.sender.id
                     else:
                         # Handle the case where the sender is not a user
-                        sender_username = ""
+                        sender_username = original_message.sender.username if original_message.sender.username else ""
                         sender_first_name = ""
                         sender_last_name = ""
-                        sender_user_id = ""
+                        sender_user_id = original_message.sender.id
                     
                     receiver_username = username  # Use the sender's username as the receiver's username in a reply
                     receiver_first_name = first_name
