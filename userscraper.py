@@ -37,19 +37,13 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
             async for post in client.iter_messages(entity, from_user=target_entity):
                 text = post.text or ""
                 date = post.date
+                sender = post.sender
                 views = post.views or "N/A"
 
-                if isinstance(post.sender, User):
-                    username = post.sender.username if post.sender.username else "N/A"
-                    first_name = post.sender.first_name if post.sender.first_name else "N/A"
-                    last_name = post.sender.last_name if post.sender.last_name else "N/A"
-                    user_id = post.sender.id
-                else:
-                    # Handle the case where the sender is not a user (e.g., a channel)
-                    username = "N/A"
-                    first_name = "N/A"
-                    last_name = "N/A"
-                    user_id = "N/A"
+                username = sender.username if sender and sender.username else "N/A"
+                first_name = sender.first_name if sender and sender.first_name else "N/A"
+                last_name = sender.last_name if sender and sender.last_name else "N/A"
+                user_id = sender.id if sender else "N/A"
 
                 message_url = f"https://t.me/{channel_name}/{post.id}"
                 channel_name = channel_name.split('/')[-1]  # Extract channel name from the URL
