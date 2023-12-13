@@ -1,0 +1,532 @@
+[33mcommit 41fb978714f7086911801f320638d1e43f5b0f83[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrobust[m[33m)[m
+Author: NeonBubbles <grahammetrickgft81@gmail.com>
+Date:   Wed Dec 13 14:49:58 2023 +0800
+
+    Let the subprocess to control the event loop of every script
+
+[33mcommit a110a45cf761c3b6fea67f25e20afadd8a571fe7[m
+Author: NeonBubbles <grahammetrickgft81@gmail.com>
+Date:   Wed Dec 13 10:48:19 2023 +0800
+
+    Modify indention
+
+[33mcommit 3a43409d66fc2d8733cb47b989314f15d2a4fe7c[m
+Author: NeonBubbles <grahammetrickgft81@gmail.com>
+Date:   Wed Dec 13 10:36:12 2023 +0800
+
+    rename the selectors.py
+
+[33mcommit 642db074d6b6b3ac887b9cc524f707e9dd0d47f4[m
+Author: James Johnson <43613294+NeonBubbles@users.noreply.github.com>
+Date:   Tue Dec 12 23:15:47 2023 +0800
+
+    Update userscraper.py
+
+[33mcommit a404147cc73dfc7d7716846082676de668bd7c4a[m
+Author: James Johnson <43613294+NeonBubbles@users.noreply.github.com>
+Date:   Tue Dec 12 18:29:56 2023 +0800
+
+    Update userscraper.py
+
+[33mcommit 6e2ed05731135f2fcc1f48efd3c320dacd4ff3d0[m
+Author: James Johnson <43613294+NeonBubbles@users.noreply.github.com>
+Date:   Tue Dec 12 18:24:27 2023 +0800
+
+    Update userscraper.py
+
+[33mcommit e19ae84ecc8a58fdac53b14eb0a2ae2e8138d7b6[m
+Author: James Johnson <43613294+NeonBubbles@users.noreply.github.com>
+Date:   Tue Dec 12 18:02:51 2023 +0800
+
+    Update userscraper.py
+    
+    Avoid the error - 'Channel' object has no attribute 'first_name'
+
+[33mcommit e1eba8e886f5f986d0577b8ff4527bb100927df0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:53:04 2023 +1300
+
+    Update launcher.py
+
+[33mcommit cd15d61590676bc7d9c4520f3e67102090f449aa[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:37:09 2023 +1300
+
+    Update README.md
+
+[33mcommit 42b9aa6a0adae76df5447c995a01f3339108e5aa[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:32:44 2023 +1300
+
+    Update README.md
+
+[33mcommit 278fef1c7ef8eeed6085ee5a9b5f701d6fa75935[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:12:15 2023 +1300
+
+    Update launcher.py
+
+[33mcommit f59f8be5746c504dbfdfd7639203723b6730d209[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:11:37 2023 +1300
+
+    Rename parse.py to selectors.py
+
+[33mcommit 32dc1b258858cc3343a735a431675fb91b7594c1[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Dec 4 09:10:52 2023 +1300
+
+    Create assessment.py
+
+[33mcommit 53c1272843e6c956e69a28f0638934f43e42f266[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Tue Nov 28 08:42:59 2023 +1300
+
+    Update channelscraper.py
+
+[33mcommit b728734e82122f71bc80001dda15b2833bd02bdc[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Nov 16 16:02:29 2023 +1300
+
+    Update README.md
+
+[33mcommit db554ecc1053b9b7c89decb95b61c07966a8a4ea[m
+Merge: 48b400d 6257bd4
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Nov 13 13:47:56 2023 +1300
+
+    Merge pull request #5 from AxylumRust/main
+    
+    Various Python code improvements courtesy of @AxylumRust
+
+[33mcommit 6257bd4cd9f514b1f4981a8ca9a46b7ffe028b9d[m
+Author: Axylum <cedric.legrand@gmail.com>
+Date:   Sun Nov 12 10:02:05 2023 +0100
+
+    Various Python code improvements
+
+[33mcommit 48b400d46b206cf45c449ea95a4bc180565c420a[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 13 16:42:12 2023 +1300
+
+    Update README.md
+
+[33mcommit 67a254a7e887c5caf405bf4e4b7912a6eccec240[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 13 08:47:14 2023 +1300
+
+    Update indicators.py
+
+[33mcommit 0fde5ff3e802ca677fb0ec41d2325d0d61fa6b36[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 13 08:19:21 2023 +1300
+
+    Update indicators.py
+
+[33mcommit afa67b7130e62c493d1552d2ca14c975a2f82ecf[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 13 08:08:26 2023 +1300
+
+    Update indicators.py
+
+[33mcommit a82a54d589c585dfad7175489e30decc79cc1458[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Wed Oct 11 12:13:48 2023 +1300
+
+    Update indicators.py
+
+[33mcommit ee20bf50fa9b76785eee7776722ec5a2decb89c1[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Tue Oct 10 10:10:25 2023 +1300
+
+    Update README.md
+
+[33mcommit a6ae57d6893333730779695c1f7266702a6bdb31[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Oct 9 13:28:56 2023 +1300
+
+    Update parse.py
+
+[33mcommit 5ca90288544970dbba9e199e8ad58dcd4698fa8a[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Oct 9 13:26:21 2023 +1300
+
+    Update parse.py
+
+[33mcommit afe26446d16af879504945816c8cf7f42ca996db[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 14:38:49 2023 +1300
+
+    Update parse.py
+
+[33mcommit 4938e98fe40dd4b334ef325ef26f4b520d910164[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 14:02:14 2023 +1300
+
+    Update requirements.txt
+
+[33mcommit d329f6c6c28580a17812eb1ed63137bc3ebc99d6[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:58:56 2023 +1300
+
+    Update frequency.py
+
+[33mcommit 08b9a5e1e3b06e2081f1c1bc99b75d62921683ea[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:16:34 2023 +1300
+
+    Update README.md
+
+[33mcommit dde6de149efbc09b4523e7f1611db8184fc66683[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:15:24 2023 +1300
+
+    Update README.md
+
+[33mcommit b6354d8e622c5df5cbe0544dd92eed4228fa5947[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:12:50 2023 +1300
+
+    Update README.md
+
+[33mcommit 6e9be2fa1c61500fbc0ac44a0f5351f5a0bc0c55[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:12:19 2023 +1300
+
+    Update README.md
+
+[33mcommit c650bdc3b6a154e2c0a19992f916a2c054499614[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 13:11:05 2023 +1300
+
+    Update README.md
+
+[33mcommit 946ff51e52de9514b4d6e5819b292976dc0a9c27[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 12:23:06 2023 +1300
+
+    Update README.md
+
+[33mcommit cabe77d8564118bd0470c01a632c521466887e52[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 12:05:25 2023 +1300
+
+    Update README.md
+
+[33mcommit 97d31ded4002ab296034a8c2c802108eee53551c[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:59:11 2023 +1300
+
+    Update README.md
+
+[33mcommit 51808b42d0417303b72c6a79836609ea846c0be9[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:54:34 2023 +1300
+
+    Update README.md
+
+[33mcommit 8da04433400a0f7740a887e69ac78f506f8072a3[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:48:33 2023 +1300
+
+    Update indicators.py
+
+[33mcommit 98b9603c85e98e4690bfe6aa4b29ff0b85234990[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:46:05 2023 +1300
+
+    Update indicators.py
+
+[33mcommit 5dc6de50c67584fa1756120ee9b07380bb8296ca[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:43:32 2023 +1300
+
+    Update parse.py
+
+[33mcommit c793567b48305016b6efa2ccf0de200fa4dbd6fb[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:26:31 2023 +1300
+
+    Update requirements.txt
+
+[33mcommit 56bf94a0563d7ddc9036200c31a48e9fbce506e5[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 11:24:44 2023 +1300
+
+    Update requirements.txt
+
+[33mcommit 1195a8003d391d250528968028ef3e348c57bf37[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 10:32:41 2023 +1300
+
+    Update README.md
+
+[33mcommit 9ee506d2934235d56a0ff1f492f22d223196e450[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 10:26:58 2023 +1300
+
+    Update indicators.py
+
+[33mcommit bded87ca8de9541d082c261919045764d1b50592[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 10:19:27 2023 +1300
+
+    Update parse.py
+
+[33mcommit fd80f8a7e7355701fe853e3fe921924ddb242156[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 10:10:12 2023 +1300
+
+    Update README.md
+
+[33mcommit a2ff01959f2d38abaff64fade8a698749f13d4f2[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Oct 6 10:08:21 2023 +1300
+
+    Update channelscraper.py
+
+[33mcommit ac4d313e9c09b1fcd23d77d12f65e4110bfc9ff8[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 14:43:46 2023 +1300
+
+    Update README.md
+
+[33mcommit 9d803d5ec0c0b091aecae1dc0df42ac5e0064838[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 14:43:10 2023 +1300
+
+    Update README.md
+
+[33mcommit 6ddaed9e55d46cf6544e61dab9631d81e841a54e[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 13:58:23 2023 +1300
+
+    Update requirements.txt
+
+[33mcommit 82a475e023fe511da5c184ea54f08a35a01a2391[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 13:54:30 2023 +1300
+
+    Update README.md
+
+[33mcommit 6731be90c337ebaa75be9b3b58635027d92657f7[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 13:45:18 2023 +1300
+
+    Update launcher.py
+
+[33mcommit bb82ccadfba516f3f01a3a31ee88cba541d72404[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 13:45:07 2023 +1300
+
+    Create indicators.py
+
+[33mcommit ca178cf5f794cfd0ebfd3c2232686f9b19cdb677[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Oct 5 13:44:30 2023 +1300
+
+    Update parse.py
+
+[33mcommit f79605e09d9fa0adc2cada697694730939aa8790[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Wed Oct 4 13:27:56 2023 +1300
+
+    Update README.md
+
+[33mcommit 52e17bc08abe069c9df5c5bcff39423d76e341a5[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 29 14:25:34 2023 +1300
+
+    Update channellist.py
+
+[33mcommit 3f4691926a3e88b57b2a6d24d2edd126b36cd426[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 29 14:20:45 2023 +1300
+
+    Update channels.py
+
+[33mcommit a5216703d433fe1d3fd335e0d793f91c14b2a688[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 29 13:56:12 2023 +1300
+
+    Update channelscraper.py
+
+[33mcommit bf34d97dc49ecda01774e55ef8d59b077b950892[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 29 13:21:59 2023 +1300
+
+    Update urlscraper.py
+
+[33mcommit fcb1f8c9c010b8dc1b80aae543cffea3374455d4[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Wed Sep 27 15:07:32 2023 +1300
+
+    Update README.md
+
+[33mcommit dfc5aedebc7af988b502e1a954b9b8766e969858[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Wed Sep 27 15:06:26 2023 +1300
+
+    Update README.md
+
+[33mcommit 07badd19df70161df0a747281c1384dec02e6f21[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 11:51:16 2023 +1200
+
+    Update README.md
+
+[33mcommit 2124876990efb1368204ab2ad43710e07a8e1554[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 11:50:44 2023 +1200
+
+    Update usermultiscraper.py
+
+[33mcommit 5ca5c985659174820c8e9ad150b4730c64f9cda4[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 11:41:06 2023 +1200
+
+    Update usermultiscraper.py
+
+[33mcommit 9ab7f00406880bd2feaa02a50f2187ed41155c2d[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 11:28:54 2023 +1200
+
+    Update README.md
+
+[33mcommit bbff7906898b4a6552b109a13d80073f79ad323e[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 11:15:32 2023 +1200
+
+    Update usermultiscraper.py
+
+[33mcommit fc4744a478175b1ac777a7680609e85cb91ea0b2[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 09:07:32 2023 +1200
+
+    Update README.md
+
+[33mcommit fcbe7db401c6c05aef1714e76c42418198d0373e[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 08:59:35 2023 +1200
+
+    Update README.md
+
+[33mcommit f6dd214bae2bbc57f717355c6b84ce9d12472a74[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 08:55:28 2023 +1200
+
+    Update README.md
+
+[33mcommit 65cefac22fff43f35a32421633fddd5f23e3b80e[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Fri Sep 22 08:54:00 2023 +1200
+
+    Update README.md
+
+[33mcommit d5e964bda2d52484f35ee9e50be5712f61451edf[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 21 14:36:31 2023 +1200
+
+    Update parse.py
+
+[33mcommit 7e951763625fe2eec00e7b5dc67dea87aed8da7e[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 21 14:31:55 2023 +1200
+
+    Update launcher.py
+
+[33mcommit a0cfc0f9abb8e719d5b445ef509d9a9e84bee995[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 21 14:31:33 2023 +1200
+
+    Update userdetails.py
+
+[33mcommit dc87353d140367f292e8e5c076e9fa1061ee7a8c[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 14:04:55 2023 +1200
+
+    Update README.md
+
+[33mcommit 752362c84cc3498b4411f0d5bb0f5cbb497917c0[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:54:03 2023 +1200
+
+    Update README.md
+
+[33mcommit fd8fd2ad42c0b3af85e12c953409e03993dfa81a[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:52:29 2023 +1200
+
+    Update frequency.py
+
+[33mcommit 35b455c04a4156678394ca124118789fe68fd965[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:46:04 2023 +1200
+
+    Update README.md
+
+[33mcommit e48b7c498ef14fd53043bc0365b6ac5d098f8caa[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:26:55 2023 +1200
+
+    Update requirements.txt
+
+[33mcommit d17c0ca4aed385043c9221dffdafcdb54aec3625[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:25:16 2023 +1200
+
+    Update network.py
+
+[33mcommit 55b4e2dc65b7fa3a07bbe05599047bcf5fcf3401[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:17:52 2023 +1200
+
+    Rename multiuserscraper.py to usermultiscraper.py
+
+[33mcommit 3ee3f05eab823a7e6700dbf4545f2966f999dfed[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Mon Sep 18 13:06:45 2023 +1200
+
+    Update requirements.txt
+
+[33mcommit 0c3be1d7fbb547705654c10243a879ec36c6b087[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 09:14:10 2023 +1200
+
+    Update README.md
+
+[33mcommit e86689e4ed84186d745f6b5977913a15c76953a5[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 09:07:11 2023 +1200
+
+    Update README.md
+
+[33mcommit 52d6a858590196e88e96bab10c958b91064c7bb2[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 08:58:43 2023 +1200
+
+    Update userscraper.py
+
+[33mcommit 2732a8d71bbe6cb4436b9ce41f4a9d7b27a4cdc9[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 08:58:30 2023 +1200
+
+    Update multiuserscraper.py
+
+[33mcommit 666e017b31c27df5b3ada9ac58eb22a5b414d4ba[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 08:58:16 2023 +1200
+
+    Update channelscraper.py
+
+[33mcommit 4b0bef5c9a541e07fa91847a375ff0abe4642492[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 08:44:17 2023 +1200
+
+    Update README.md
+
+[33mcommit a76fba4b0d4f48034e05bb8fe6963a64c30000df[m
+Author: sockysec <121141737+sockysec@users.noreply.github.com>
+Date:   Thu Sep 14 08:36:30 2023 +1200
+
+    Update README.md

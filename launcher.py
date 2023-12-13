@@ -1,27 +1,10 @@
-import asyncio
-
+import subprocess
 from telethon.sync import TelegramClient
-
 from colorama import init, Fore, Style
 
 # Initialize colorama
 
 init(autoreset=True)
-
-
-# Function to stop any existing asyncio event loop
-
-def stop_event_loop():
-    try:
-
-        loop = asyncio.get_event_loop()
-
-        loop.stop()
-
-    except Exception as e:
-
-        pass
-
 
 # Launcher code
 
@@ -118,10 +101,8 @@ def get_choice(options):
 display(options)
 
 if choice := get_choice(options):
-    # Stop any existing event loop
-
-    stop_event_loop()
 
     print(f'Loading {choice}...')
 
-    exec(open(choice).read())
+    subprocess.run(['python', choice])
+    
