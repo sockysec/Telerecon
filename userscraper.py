@@ -2,6 +2,7 @@ import os
 import asyncio
 import details as ds
 from telethon import TelegramClient, errors
+from telethon.tl.types import User
 import pandas as pd
 from colorama import Fore, Style
 
@@ -36,13 +37,25 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
             async for post in client.iter_messages(entity, from_user=target_entity):
                 text = post.text or ""
                 date = post.date
-                sender = post.sender
                 views = post.views or "N/A"
 
-                username = sender.username if sender and sender.username else "N/A"
-                first_name = sender.first_name if sender and sender.first_name else "N/A"
-                last_name = sender.last_name if sender and sender.last_name else "N/A"
-                user_id = sender.id if sender else "N/A"
+                try:
+                    if isinstance(post.sender, User):
+                        username = post.sender.username if post.sender.username else "N/A"
+                        first_name = post.sender.first_name if post.sender.first_name else "N/A"
+                        last_name = post.sender.last_name if post.sender.last_name else "N/A"
+                        user_id = post.sender.id
+                    else:
+                        # Handle the case where the sender is not a user (e.g., a channel)
+                        username = post.sender.username if post.sender.username else "N/A"
+                        first_name = "N/A"
+                        last_name = "N/A"
+                        user_id = post.sender.id
+                except Exception as e:
+                    username = "N/A"
+                    first_name = "N/A"
+                    last_name = "N/A"
+                    user_id = "N/A"
 
                 message_url = f"https://t.me/{channel_name}/{post.id}"
                 channel_name = channel_name.split('/')[-1]  # Extract channel name from the URL
@@ -62,10 +75,25 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                     replied_to_msg_id = post.reply_to_msg_id
                     original_message = await client.get_messages(entity, ids=replied_to_msg_id)
 
-                    sender_username = original_message.sender.username if original_message.sender and original_message.sender.username else ""
-                    sender_first_name = original_message.sender.first_name if original_message.sender and original_message.sender.first_name else ""
-                    sender_last_name = original_message.sender.last_name if original_message.sender and original_message.sender.last_name else ""
-                    sender_user_id = original_message.sender.id if original_message.sender else ""
+                    try:
+                        # Check if the sender of the original message is a user
+                        if isinstance(original_message.sender, User):
+                            sender_username = original_message.sender.username if original_message.sender.username else ""
+                            sender_first_name = original_message.sender.first_name if original_message.sender.first_name else ""
+                            sender_last_name = original_message.sender.last_name if original_message.sender.last_name else ""
+                            sender_user_id = original_message.sender.id
+                        else:
+                            # Handle the case where the sender is not a user
+                            sender_username = original_message.sender.username if original_message.sender.username else ""
+                            sender_first_name = ""
+                            sender_last_name = ""
+                            sender_user_id = original_message.sender.id
+                    except Exception as e:
+                        sender_username = ""
+                        sender_first_name = ""
+                        sender_last_name = ""
+                        sender_user_id = ""
+                    
                     receiver_username = username  # Use the sender's username as the receiver's username in a reply
                     receiver_first_name = first_name
                     receiver_last_name = last_name
