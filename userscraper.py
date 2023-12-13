@@ -39,7 +39,7 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                 date = post.date
                 views = post.views or "N/A"
 
-               try:
+                try:
                     if isinstance(post.sender, User):
                         username = post.sender.username if post.sender.username else "N/A"
                         first_name = post.sender.first_name if post.sender.first_name else "N/A"
