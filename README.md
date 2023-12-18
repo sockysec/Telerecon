@@ -127,15 +127,15 @@ The analysis will be output into the Collection folder.
 # Usage Notes
 
 - Phone number should always be input in an international format beginning with +
-- Running the advanced reports and analytics (9, 10, 11, 12, 13) assume that you have already collected the target user's posts.
+- Running the advanced reports and analytics (9, 10, 11, 12, 13, 15, 16) assume that you have already collected the target user's posts.
 - You can speed up collection by decreasing the "REQUEST_DELAY =" however this may result in temporary API rate limiting.
 - Choosing to download media will significantly slow down collection.
-- While most advanced reports are designed to analyse a users messages, most will also work on a channel (Options 10, 13, and 15)
+- While most advanced reports are designed to analyse a users messages, most will also work on a channel (Options 10, 13, 15, 16)
 - To minimise system-specific errors, utilise the pre-built TradeLabs OSINT VM https://www.tracelabs.org/initiatives/osint-vm
+- If any errors occur, simply rebooting the launcher and trying again often solves the issue.
 
 
 # Known Issues
-- Returning to the launcher and rerunning/running certain script options, can cause a crash. Simply reboot the launcher if this occurs and it will work.
 - While parsing and tagging works, Arabic language indicators are not printing correctly to PDF.
 
 # Credit
