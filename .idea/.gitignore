@@ -6,3 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+details.py
+Collection
+__pycache__
+*.session
+*.session-journal

@@ -1,5 +1,12 @@
 from colorama import init, Fore, Style
 
+# Function to update details.py file
+def update_details_file(api_id, api_hash, phone_number):
+    with open("details.py", "w") as file:
+        file.write(f'apiID = "{api_id}"\n')
+        file.write(f'apiHash = "{api_hash}"\n')
+        file.write(f'number = "{phone_number}"\n')
+
 # ask user for telegram details and guide them through it
 init(autoreset=True)
 
@@ -14,103 +21,50 @@ print(Fore.CYAN + r'____________________________________________________________
 print(Style.RESET_ALL)
 
 print('Welcome to the Telegram Scraper setup wizard.')
-
 print('This file will insert your login information to the Telegram Scraper scripts.')
-
 print('Follow the README instructions to get your credentials.')
 
-fin1 = open("detailsshell.py", "rt")
-
-fout1 = open("details.py", "wt")
-
 while True:
-
     try:
-
-        a = input("Please enter your API ID:\n")
-
-        print(f'You entered "{a}"')
-
-        a1 = input('Is this correct? (y/n)')
-
-        if a1 == 'y':
+        api_id = input("Please enter your API ID:\n")
+        print(f'You entered "{api_id}"')
+        confirmation = input('Is this correct? (y/n)')
+        if confirmation.lower() == 'y':
             print('Updating...')
-
-            new_text1 = a
-
-            break;
-
+            break
     except:
-
         continue
 
 while True:
-
     try:
-
-        h = input("Please enter your API Hash:\n")
-
-        print(f'You entered "{h}"')
-
-        a2 = input('Is this correct? (y/n)')
-
-        if a2 == 'y':
+        api_hash = input("Please enter your API Hash:\n")
+        print(f'You entered "{api_hash}"')
+        confirmation = input('Is this correct? (y/n)')
+        if confirmation.lower() == 'y':
             print('Updating...')
-
-            new_text2 = f"'{h}'"
-
-            break;
-
+            break
     except:
-
         continue
 
 while True:
-
     try:
-
-        n = input("Please enter your phone number:\n")
-
-        print(f'You entered "{n}"')
-
-        a3 = input('Is this correct? (y/n)')
-
-        if a3 == 'y':
+        phone_number = input("Please enter your phone number:\n")
+        print(f'You entered "{phone_number}"')
+        confirmation = input('Is this correct? (y/n)')
+        if confirmation.lower() == 'y':
             print('Updating...')
-
-            new_text3 = f"'{n}'"
-
-            break;
-
+            break
     except:
-
         continue
 
-checkWords = ("old_text1", "old_text2", "old_text3")
-
-repWords = (new_text1, new_text2, new_text3)
-
-for line in fin1:
-
-    for check, rep in zip(checkWords, repWords):
-        line = line.replace(check, rep)
-
-    fout1.write(line)
-
-fin1.close()
-
-fout1.close()
+update_details_file(api_id, api_hash, phone_number)
 
 print('Setup is complete.')
 
 launcher = input('Do you want to open the launcher? (y/n)')
 
-if launcher == 'y':
-
+if launcher.lower() == 'y':
     print('Starting...')
-
     exec(open("launcher.py").read())
-
 else:
-
     print('The launcher is now ready and can be started with the launcher.py file. You may now close the terminal.')
