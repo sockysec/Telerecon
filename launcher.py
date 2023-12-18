@@ -103,4 +103,5 @@ if choice := get_choice(options):
 
     print(f'Loading {choice}...')
     
-    subprocess.run(['python', choice])
+    # Run the selected script
+    subprocess.Popen(['python', choice])
