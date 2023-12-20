@@ -48,8 +48,7 @@ def parse_gps_info(gps_info):
     return gps_data
 
 
-# Main function
-if __name__ == "__main__":
+def main():
     # Ask the user for a target @Username
     target_username = input("Enter the target @Username: ").strip()
 
@@ -153,9 +152,6 @@ if __name__ == "__main__":
 
     print(f"GPS metadata analysis completed. Results saved to {output_csv_file}")
 
-    # Ask if the user wants to return to the launcher
-    launcher = input('Do you want to return to the launcher? (y/n)')
 
-    if launcher == 'y':
-        print('Restarting...')
-        exec(open("launcher.py").read())
+if __name__ == "__main__":
+    main()

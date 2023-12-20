@@ -92,7 +92,8 @@ def extract_sentences(username, input_csv, output_pdf, target_phrase_list1, targ
     doc.build(story)
     print(f"Key phrase extraction report saved to {output_pdf_path}")
 
-if __name__ == "__main__":
+
+def main():
     # Define target phrase lists
     target_phrase_list1 = ["my", "buy", "buying", "get", "getting", "got", "have", "acquire", "acquiring", "obtain", "obtaining", "procure", "procuring",  "wanting", "want to", "want a" "going to", "own", "owning", "license", "a", "with", "certified", "need", "stolen", "steal a", "3d print", "3d-print", "3d printed", "3d-printed", "borrow", "take",]
     target_phrase_list2 = ["gun", "rifle", "pistol", "knife", "shotgun", "revolver", "firearm", "firearms", "SMG", "AR", "sawnoff", "sawn off", "sawn-off", "machine gun", "doublebarrel", "doublebarreled", "double-barrel", "double-barreled", "bolt-action", "bolt-action", "lever-action", "lever action", "pump-action", "semi-automatic",  "semiautomatic", "fully automatic", "ar-15", "ar15", "AK-47", "M4", "M16", "remington", "glock", "sig", "springfield", "ruger", "Smith & Wesson", "S&W", "M&P", "Colt", "Winchester", "benelli", "M&P15", "kel-tec", "KSG", "590", "870", "LE6920", "AR-556", "G19", "85", "taurus", "629", ".85", ".45", ".22", "22", "9mm", "9 mm", ".30", "beretta", ".50", "50cal", "50 cal", "bushmaster", "M1911", "12 gauge", "12gauge", "12ga","geissele", "chamber a round" , "ammo", "ammunition", "caliber", "gauge", "magazine", "buck shot", "buckshot", "armor-piercing", "hollow point", "hollow points","birdshot", "bird shot", "gun range", "rifle club", "shooting pracitice", "shooting range", "firearms training ", "hunting", "duck shooting", "target shooting", "target pracitice", "scope", "silencer", "suppressor", "compensator","stock", "barrel", "muzzle", "bipod", "firing pin", "optics", "crossbow", "compound bow", "pipe bomb", "pipebomb", "pipe-bomb", "pipebombs", "pipe-bombs", "grenade", "grenades", "IED", "improvised explosive device", "ball bearings", "molotov", "nitrate", "TNT", "landmine", "firebomb", "tannerite", "semtex", "fertilizer", "detonater", "detornaters", "nitroglycerin", "ammonium nitrate", "propellant", "thermalite", "thermite", "blasting cap", "det cord", "detcord", "boom stick", "fire bomb", "explosives", "kevlar", "body armour", "stab-proof vest", "stabproof vest",]
@@ -104,8 +105,5 @@ if __name__ == "__main__":
     # Run the extraction and PDF generation
     extract_sentences(target_username, "input.csv", target_username + "_threat_assessment.pdf", target_phrase_list1, target_phrase_list2, target_phrase_list3)
 
-    # Ask if the user wants to return to the launcher
-    launcher = input('Do you want to return to the launcher? (y/n)')
-    if launcher == 'y':
-        print('Restarting...')
-        exec(open("launcher.py").read())
+if __name__ == "__main__":
+    main()   

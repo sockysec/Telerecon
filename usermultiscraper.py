@@ -134,10 +134,11 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
             return [], []
 
 
-async def main():
+async def main(target_user=None, target_list_filename=None):
     print()
-    target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
-    target_list_filename = input(
+    if target_user is None:
+        target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
+        target_list_filename = input(
         f"{Fore.CYAN}Please enter the filename of the target channel list (csv/txt): {Style.RESET_ALL}")
     download_media_option = input(f"{Fore.CYAN}Would you like to download the target's media (y/n)? {Style.RESET_ALL}")
     download_media = download_media_option.lower() == 'y'
@@ -201,13 +202,6 @@ async def main():
         print(f'Successfully saved network interaction data to {network_csv_filename}.')
     except Exception as e:
         print(f"{Fore.RED}An error occurred while saving network data to CSV: {e}{Style.RESET_ALL}")
-
-    # Ask if the user wants to return to the launcher
-    launcher = input('Do you want to return to the launcher? (y/n)')
-
-    if launcher == 'y':
-        print('Restarting...')
-        exec(open("launcher.py").read())
 
 
 if __name__ == '__main__':

@@ -18,7 +18,6 @@ if not os.path.exists("Collection"):
 # Define the REQUEST_DELAY
 REQUEST_DELAY = 1  # Delay in seconds between requests
 
-
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
     media_directory = os.path.join(user_directory,
                                    f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
@@ -173,13 +172,6 @@ async def main():
     except Exception as e:
         print(f"{Fore.RED}An error occurred while saving network data to CSV: {e}{Style.RESET_ALL}")
 
-    # Ask if the user wants to return to launcher
-    launcher = input('Do you want to return to the launcher? (y/n)')
-
-    if launcher == 'y':
-        print('Restarting...')
-        exec(open("launcher.py").read())
-
-
 if __name__ == '__main__':
     asyncio.run(main())
+

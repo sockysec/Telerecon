@@ -15,7 +15,7 @@ phone = ds.number
 
 
 async def scrape_forwards(channel_name):
-    l = []
+    channel_info = []
     source_urls = []
     count = 0
 
@@ -29,7 +29,7 @@ async def scrape_forwards(channel_name):
                             ent = await client.get_entity(id)
                             target_channel_entity = await client.get_entity(message.to_id.channel_id)
                             target_channel_title = target_channel_entity.title
-                            l.append([ent.title, target_channel_title])
+                            channel_info.append([ent.title, target_channel_title])
                             source_url = f"https://t.me/{ent.username}"
                             source_urls.append(source_url)
                             count += 1
@@ -42,7 +42,7 @@ async def scrape_forwards(channel_name):
                 except Exception as e:
                     print(f"{Fore.RED}Skipping forward: Private/Inaccessible{Style.RESET_ALL}")
 
-    df = pd.DataFrame(l, columns=['From', 'To'])
+    df = pd.DataFrame(channel_info, columns=['From', 'To'])
     source_df = pd.DataFrame(source_urls, columns=['SourceURL'])
 
     os.makedirs('Adjacency List', exist_ok=True)
@@ -75,9 +75,10 @@ async def main():
         await scrape_forwards(channel)
         print("CSV files created for", channel)
         print()
+        print('Forwards scraped successfully.')
 
 
 if __name__ == '__main__':
     asyncio.run(main())
 
-print('Forwards scraped successfully.')
+

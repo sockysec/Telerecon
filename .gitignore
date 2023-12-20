@@ -11,3 +11,5 @@ Collection
 __pycache__
 *.session
 *.session-journal
+*.txt
+*.csv
