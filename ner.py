@@ -25,7 +25,7 @@ def preprocess_text(text):
     return text
 
 # Create and export PDF with sorted entity tags
-def export_entities_to_pdf(entity_categories, filename='entity_tags.pdf'):
+def export_entities_to_pdf(entity_categories, target_username, filename='entity_tags.pdf'):
     doc = SimpleDocTemplate(f'Collection/{target_username}/{filename}', pagesize=letter)
     styles = getSampleStyleSheet()
     story = []
@@ -90,7 +90,7 @@ def main():
                         entity_categories[label][entity] += 1
 
     # Export entities to PDF
-    export_entities_to_pdf(entity_categories)
+    export_entities_to_pdf(entity_categories, target_username)
     print(f"PDF report created: Collection/{target_username}/entity_tags.pdf")
 
 if __name__ == '__main__':
