@@ -1,21 +1,13 @@
+from ast import main
 import os
-
 import re
-
 import pandas as pd
-
 from openpyxl import Workbook
-
 from reportlab.lib.pagesizes import letter
-
 from reportlab.lib import colors
-
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-
 from reportlab.platypus import PageBreak
-
 from validate_email_address import validate_email
 
 
@@ -211,8 +203,7 @@ def extract_sentences(username, input_csv, output_pdf, target_phrases):
 
     print(f"Key phrase extraction report saved to {output_pdf_path}")
 
-
-if __name__ == "__main__":
+def main():
     target_phrases = [
 
         # List of target phrases here
@@ -245,18 +236,12 @@ if __name__ == "__main__":
     ]
 
     # Get the target username from the user
-
     target_username = input("Enter the target username (with @): ")
 
     # Run the extraction and PDF generation
-
     extract_sentences(target_username, "input.csv", target_username + "_keyphrase_report.pdf", target_phrases)
 
-# Ask if the user wants to return to the launcher
+if __name__ == "__main__":
+    main()
+    
 
-launcher = input('Do you want to return to the launcher? (y/n)')
-
-if launcher == 'y':
-    print('Restarting...')
-
-    exec(open("launcher.py").read())

@@ -1,17 +1,12 @@
 import os
-
+import asyncio
 import datetime
-
 from telethon import TelegramClient
-
 from telethon.tl.types import UserStatusOffline
-
 from colorama import init, Fore, Style
-
 from details import apiID, apiHash, number
 
 # Initialize colorama for colored console output
-
 init(autoreset=True)
 
 
@@ -26,7 +21,6 @@ async def get_user_information(client, identifier, username):
         user = await client.get_entity(identifier)
 
         # Create a user-specific directory
-
         user_directory = os.path.join("Collection", username)
 
         if not os.path.exists(user_directory):
@@ -135,31 +129,18 @@ async def main():
     identifier = input(f"{Fore.CYAN}Enter target @username{Fore.RESET}: ")
 
     # Create a 'Collection' directory if it doesn't exist
-
     if not os.path.exists("Collection"):
         os.makedirs("Collection")
 
     async with TelegramClient('session_name', apiID, apiHash) as client:
 
         # Remove "@" symbol from the username if present
-
         username = identifier.replace('@', '')
 
         # Call the function with the modified username
-
         await get_user_information(client, identifier, username)
-
-    # Ask if the user wants to return to the launcher
-
-    launcher = input('Do you want to return to the launcher? (y/n)')
-
-    if launcher == 'y':
-        print('Exiting...')
-
-        # You can use 'os.system' to run the launcher script
-
-        os.system('python3 launcher.py')
 
 
 if __name__ == "__main__":
     asyncio.run(main())
+
