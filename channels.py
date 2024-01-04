@@ -1,9 +1,10 @@
-import os
 import asyncio
-from telethon import TelegramClient
+import os
+
+import details as ds
 import pandas as pd
 from colorama import Fore, Style
-import details as ds
+from telethon import TelegramClient
 
 # Login details
 api_id = ds.apiID
@@ -12,6 +13,15 @@ phone = ds.number
 
 
 async def main():
+    """
+        Scrapes forwards from a Telegram channel and saves the adjacency list and source URLs.
+
+        Returns:
+            None
+
+        Examples:
+            await main()
+    """
     client = TelegramClient(phone, api_id, api_hash)
     await client.start()
 
@@ -78,9 +88,6 @@ again = input('Do you want to scrape more channels? (y/n)')
 if again == 'y':
     print('Restarting...')
     exec(open("channels.py").read())
-else:
-    pass
-
 launcher = input('Do you want to return to the launcher? (y/n)')
 if launcher == 'y':
     print('Restarting...')

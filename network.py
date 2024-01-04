@@ -1,8 +1,8 @@
 import os
-import pandas as pd
-import networkx as nx
+
 import matplotlib.pyplot as plt
-import numpy as np
+import networkx as nx
+import pandas as pd
 
 # Ask the user for the target username
 target_username = input("Enter the target username (e.g., @Johnsmith): ")

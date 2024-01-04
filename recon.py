@@ -1,11 +1,12 @@
-import os
 import asyncio
-import details as ds
-from telethon import TelegramClient, errors, types
-import pandas as pd
-from colorama import Fore, Style
+import os
 import subprocess
 import sys
+
+import details as ds
+import pandas as pd
+from colorama import Fore, Style
+from telethon import TelegramClient, errors
 
 # API details
 api_id = ds.apiID
@@ -17,6 +18,17 @@ REQUEST_DELAY = 1  # Delay in seconds between requests
 
 
 async def count_user_posts(client, channel_name, target_user):
+    """
+        Counts the number of posts made by a target user in a given channel.
+
+        Args:
+            client: The Telegram client.
+            channel_name (str): The name of the channel.
+            target_user (str): The username of the target user.
+
+        Returns:
+            int: The number of posts made by the target user in the channel.
+    """
     try:
         entity = await client.get_entity(channel_name)
         target_entity = await client.get_entity(target_user)
@@ -36,6 +48,17 @@ async def count_user_posts(client, channel_name, target_user):
 
 
 async def process_target_channels(target_user, target_list_filename):
+    """
+        Processes a list of target channels to check the activity of a target user in each channel.
+        Saves the post counts to a CSV file.
+
+        Args:
+            target_user (str): The username of the target user.
+            target_list_filename (str): The filename of the file containing the list of target channels.
+
+        Returns:
+            None
+    """
     if not os.path.exists(target_list_filename):
         print(f"{Fore.RED}Error: The file '{target_list_filename}' does not exist.{Style.RESET_ALL}")
         return

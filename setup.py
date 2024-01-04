@@ -1,5 +1,6 @@
 from colorama import init, Fore, Style
 
+
 # Function to update details.py file
 def update_details_file(api_id, api_hash, phone_number):
     with open("details.py", "w") as file:
@@ -7,17 +8,26 @@ def update_details_file(api_id, api_hash, phone_number):
         file.write(f'apiHash = "{api_hash}"\n')
         file.write(f'number = "{phone_number}"\n')
 
+
 # ask user for telegram details and guide them through it
 init(autoreset=True)
 
-print(Fore.CYAN + r' __________________________________________________________________')
-print(Fore.CYAN + r'   _______ ______ _      ______ _____  ______ _____ ____  _   _    ')
+print(
+    f'{Fore.CYAN} __________________________________________________________________'
+)
+print(
+    f'{Fore.CYAN}   _______ ______ _      ______ _____  ______ _____ ____  _   _    '
+)
 print(Fore.CYAN + r'  |__   __|  ____| |    |  ____|  __ \|  ____/ ____/ __ \| \ | |   ')
 print(Fore.CYAN + r'     | |  | |__  | |    | |__  | |__) | |__ | |   | |  | |  \| |   ')
-print(Fore.CYAN + r'     | |  |  __| | |    |  __| |  _  /|  __|| |   | |  | | . ` |   ')
+print(
+    f'{Fore.CYAN}     | |  |  __| | |    |  __| |  _  /|  __|| |   | |  | | . ` |   '
+)
 print(Fore.CYAN + r'     | |  | |____| |____| |____| | \ \| |___| |___| |__| | |\  |   ')
 print(Fore.CYAN + r'     |_|  |______|______|______|_|  \_\______\_____\____/|_| \_| v2')
-print(Fore.CYAN + r'___________________________________________________________________')
+print(
+    f'{Fore.CYAN}___________________________________________________________________'
+)
 print(Style.RESET_ALL)
 
 print('Welcome to the Telegram Scraper setup wizard.')
@@ -32,7 +42,7 @@ while True:
         if confirmation.lower() == 'y':
             print('Updating...')
             break
-    except:
+    except Exception:
         continue
 
 while True:
@@ -43,7 +53,7 @@ while True:
         if confirmation.lower() == 'y':
             print('Updating...')
             break
-    except:
+    except Exception:
         continue
 
 while True:
@@ -54,7 +64,7 @@ while True:
         if confirmation.lower() == 'y':
             print('Updating...')
             break
-    except:
+    except Exception:
         continue
 
 update_details_file(api_id, api_hash, phone_number)

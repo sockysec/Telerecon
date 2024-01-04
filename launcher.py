@@ -1,6 +1,5 @@
 import asyncio
-
-from telethon.sync import TelegramClient
+import contextlib
 
 from colorama import init, Fore, Style
 
@@ -12,15 +11,16 @@ init(autoreset=True)
 # Function to stop any existing asyncio event loop
 
 def stop_event_loop():
-    try:
+    """
+        Stops the asyncio event loop.
 
+        Returns:
+            None
+    """
+    with contextlib.suppress(Exception):
         loop = asyncio.get_event_loop()
 
         loop.stop()
-
-    except Exception as e:
-
-        pass
 
 
 # Launcher code
@@ -94,17 +94,35 @@ options = {
     'Conduct a subscriber census across a list of target channels': 'census.py',
 
     'Parse user messages to extract ideological indicators': 'indicators.py',
-    
+
     'Parse user messages to extract indicators of capability and violent intent': 'assessment.py'
 }
 
 
 def display(options):
+    """
+        Displays a numbered list of options.
+
+        Args:
+            options (dict): A dictionary of options.
+
+        Returns:
+            None
+    """
     for idx, option in enumerate(options.keys(), start=1):
         print(f"{idx}. {option}")
 
 
 def get_choice(options):
+    """
+        Gets the user's choice from a numbered list of options.
+
+        Args:
+            options (dict): A dictionary of options.
+
+        Returns:
+            The selected option value, or None if the choice is invalid.
+    """
     choose = int(input("\nPick a number: ")) - 1
 
     if choose < 0 or choose >= len(options):

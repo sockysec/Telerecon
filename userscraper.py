@@ -1,10 +1,11 @@
-import os
 import asyncio
+import os
+
 import details as ds
-from telethon import TelegramClient, errors
-from telethon.tl.types import User
 import pandas as pd
 from colorama import Fore, Style
+from telethon import TelegramClient, errors
+from telethon.tl.types import User
 
 # API details
 api_id = ds.apiID
@@ -20,6 +21,20 @@ REQUEST_DELAY = 1  # Delay in seconds between requests
 
 
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
+    """
+        Scrapes messages from a target channel for a specific user and saves the data to CSV files.
+        Also generates a network map CSV file.
+
+        Args:
+            channel_name (str): The name of the target channel.
+            target_user (str): The username of the target user.
+            user_directory (str): The directory to save the user-specific data.
+            download_media (bool): Whether to download media files or not.
+            sanitized_target_user (str): The sanitized username of the target user.
+
+        Returns:
+            tuple: A tuple containing the scraped content and network data.
+    """
     media_directory = os.path.join(user_directory,
                                    f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
     if not os.path.exists(media_directory):
@@ -41,16 +56,13 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
                 try:
                     if isinstance(post.sender, User):
-                        username = post.sender.username if post.sender.username else "N/A"
-                        first_name = post.sender.first_name if post.sender.first_name else "N/A"
-                        last_name = post.sender.last_name if post.sender.last_name else "N/A"
-                        user_id = post.sender.id
+                        first_name = post.sender.first_name or "N/A"
+                        last_name = post.sender.last_name or "N/A"
                     else:
-                        # Handle the case where the sender is not a user (e.g., a channel)
-                        username = post.sender.username if post.sender.username else "N/A"
                         first_name = "N/A"
                         last_name = "N/A"
-                        user_id = post.sender.id
+                    user_id = post.sender.id
+                    username = post.sender.username or "N/A"
                 except Exception as e:
                     username = "N/A"
                     first_name = "N/A"
@@ -76,24 +88,21 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                     original_message = await client.get_messages(entity, ids=replied_to_msg_id)
 
                     try:
-                        # Check if the sender of the original message is a user
+                        # Check if the sen der of the original message is a user
                         if isinstance(original_message.sender, User):
-                            sender_username = original_message.sender.username if original_message.sender.username else ""
-                            sender_first_name = original_message.sender.first_name if original_message.sender.first_name else ""
-                            sender_last_name = original_message.sender.last_name if original_message.sender.last_name else ""
-                            sender_user_id = original_message.sender.id
+                            sender_first_name = original_message.sender.first_name or ""
+                            sender_last_name = original_message.sender.last_name or ""
                         else:
-                            # Handle the case where the sender is not a user
-                            sender_username = original_message.sender.username if original_message.sender.username else ""
                             sender_first_name = ""
                             sender_last_name = ""
-                            sender_user_id = original_message.sender.id
+                        sender_user_id = original_message.sender.id
+                        sender_username = original_message.sender.username or ""
                     except Exception as e:
                         sender_username = ""
                         sender_first_name = ""
                         sender_last_name = ""
                         sender_user_id = ""
-                    
+
                     receiver_username = username  # Use the sender's username as the receiver's username in a reply
                     receiver_first_name = first_name
                     receiver_last_name = last_name

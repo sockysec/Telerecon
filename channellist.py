@@ -1,12 +1,13 @@
-import os
 import asyncio
-import details as ds
-from telethon import TelegramClient
-import pandas as pd
-from colorama import Fore, Style
+import os
 import re
 from urllib.parse import urlparse
+
+import details as ds
+import pandas as pd
 import telethon.errors
+from colorama import Fore, Style
+from telethon import TelegramClient
 
 # Login details
 api_id = ds.apiID
@@ -15,6 +16,18 @@ phone = ds.number
 
 
 async def scrape_forwards(channel_name):
+    """
+        Scrapes forwards from a Telegram channel and saves the adjacency list and source URLs.
+
+        Args:
+            channel_name (str): The name of the Telegram channel to scrape forwards from.
+
+        Returns:
+            None
+
+        Examples:
+            await scrape_forwards("channel_name")
+    """
     l = []
     source_urls = []
     count = 0
@@ -59,6 +72,15 @@ async def scrape_forwards(channel_name):
 
 
 async def main():
+    """
+        Reads a file containing a list of Telegram channels, scrapes forwards from each channel, and creates CSV files for each channel.
+
+        Returns:
+            None
+
+        Examples:
+            await main()
+    """
     channels_file = input("Enter the name of the file containing the list of channels (csv or txt): ")
 
     with open(channels_file) as file:

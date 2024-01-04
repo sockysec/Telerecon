@@ -1,15 +1,25 @@
+import os
+import re
+from collections import Counter
+
 import pandas as pd
 import spacy
-import re
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
-from collections import Counter
-import os
+from reportlab.platypus import SimpleDocTemplate, Paragraph
 
 
 # Function to create the target directory if it doesn't exist
 def create_target_directory(target_username):
+    """
+        Creates a target directory for storing collection files.
+
+        Args:
+            target_username (str): The username of the target.
+
+        Returns:
+            None
+    """
     target_dir = f'Collection/{target_username}'
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
@@ -31,6 +41,15 @@ nlp = spacy.load('en_core_web_sm')
 
 # Preprocessing function
 def preprocess_text(text):
+    """
+        Preprocesses the input text by removing URLs, non-alphanumeric characters, and replacing punctuation between alphanumeric characters with spaces.
+
+        Args:
+            text (str): The input text.
+
+        Returns:
+            str: The preprocessed text.
+    """
     if isinstance(text, str):
         text = re.sub(r'http\S+', '', text)  # Remove URLs
         text = re.sub(r'[^a-zA-Z0-9\s]', '', text)  # Remove non-alphanumeric characters
@@ -41,6 +60,7 @@ def preprocess_text(text):
 
 # Dictionary to store named entities of each category with counts
 import contextlib
+
 entity_categories = {
     'PERSON': Counter(),
     'ORG': Counter(),
@@ -67,6 +87,16 @@ for index, row in df.iterrows():
 
 # Create and export PDF with sorted entity tags
 def export_entities_to_pdf(entity_categories, filename='entity_tags.pdf'):
+    """
+        Exports entity categories and their corresponding entities to a PDF file.
+
+        Args:
+            entity_categories (dict): A dictionary mapping entity categories to their entities.
+            filename (str): The name of the output PDF file. Defaults to 'entity_tags.pdf'.
+
+        Returns:
+            None
+    """
     doc = SimpleDocTemplate(f'Collection/{target_username}/{filename}', pagesize=letter)
     styles = getSampleStyleSheet()
     story = []

@@ -11,6 +11,18 @@ phone = ds.number
 
 
 async def scrape_channel_content(channel_name):
+    """
+        Scrapes the content of a Telegram channel and returns a list of tuples containing post information.
+
+        Args:
+            channel_name (str): The name of the Telegram channel to scrape.
+
+        Returns:
+            list: A list of tuples containing post information in the format (text, username, first_name, last_name, user_id, views, message_url).
+
+        Examples:
+            content = await scrape_channel_content("channel_name")
+    """
     async with TelegramClient(phone, api_id, api_hash) as client:
         try:
             entity = await client.get_entity(channel_name)
@@ -25,7 +37,7 @@ async def scrape_channel_content(channel_name):
                     if isinstance(sender, types.User):
                         username = sender.username or "N/A"
                         first_name = sender.first_name or "N/A"
-                        last_name = sender.last_name if sender.last_name else "N/A"
+                        last_name = sender.last_name or "N/A"
                         user_id = sender.id
                     else:
                         username = "N/A"
@@ -55,6 +67,15 @@ async def scrape_channel_content(channel_name):
 
 
 async def main():
+    """
+        Scrapes the content of a target Telegram channel and saves it to a CSV file.
+
+        Returns:
+            None
+
+        Examples:
+            await main()
+    """
     try:
         channel_name = input(
             f"{Fore.CYAN}Please enter a target Telegram channel (e.g., https://t.me/{Fore.LIGHTYELLOW_EX}your_channel{Style.RESET_ALL}):\n")

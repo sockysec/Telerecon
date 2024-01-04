@@ -1,27 +1,26 @@
 import os
-
 import re
 
 import pandas as pd
-
-from openpyxl import Workbook
-
 from reportlab.lib.pagesizes import letter
-
-from reportlab.lib import colors
-
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-
-from reportlab.platypus import PageBreak
-
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from validate_email_address import validate_email
 
 
 # Function to extract sentences containing key phrases, emails, and phone numbers
 
 def extract_sentences(username, input_csv, output_pdf, target_phrases):
+    """
+        Exports entity categories and their corresponding entities to a PDF file.
+
+        Args:
+            entity_categories (dict): A dictionary mapping entity categories to their entities.
+            filename (str): The name of the output PDF file. Defaults to 'entity_tags.pdf'.
+
+        Returns:
+            None
+    """
     username = username.strip("@")  # Remove "@" symbol from username
 
     input_csv_path = f"Collection/{username}/{username}_messages.csv"
