@@ -1,11 +1,11 @@
-import os
 import asyncio
+import os
+
 import details as ds
-from telethon import TelegramClient, errors
-from telethon.tl.types import User
 import pandas as pd
 from colorama import Fore, Style
-from telethon.tl.functions.upload import GetFileRequest
+from telethon import TelegramClient, errors
+from telethon.tl.types import User
 
 # API details
 api_id = ds.apiID
@@ -21,6 +21,17 @@ REQUEST_DELAY = 1  # Delay in seconds between requests
 
 
 async def scrape_user_messages(channel_name, target_user, user_directory, download_media, sanitized_target_user):
+    """
+        Processes a list of target channels to check the activity of a target user in each channel.
+        Saves the post counts to a CSV file.
+
+        Args:
+            target_user (str): The username of the target user.
+            target_list_filename (str): The filename of the file containing the list of target channels.
+
+        Returns:
+            None
+    """
     media_directory = os.path.join(user_directory,
                                    f"{sanitized_target_user.lstrip('@')}_media")  # Sub-directory for media
     if not os.path.exists(media_directory):
@@ -44,13 +55,13 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
                     try:
                         if isinstance(post.sender, User):
-                            username = post.sender.username if post.sender.username else "N/A"
-                            first_name = post.sender.first_name if post.sender.first_name else "N/A"
-                            last_name = post.sender.last_name if post.sender.last_name else "N/A"
+                            username = post.sender.username or "N/A"
+                            first_name = post.sender.first_name or "N/A"
+                            last_name = post.sender.last_name or "N/A"
                             user_id = post.sender.id
                         else:
                             # Handle the case where the sender is not a user (e.g., a channel)
-                            username = post.sender.username if post.sender.username else "N/A"
+                            username = post.sender.username or "N/A"
                             first_name = "N/A"
                             last_name = "N/A"
                             user_id = post.sender.id
@@ -81,26 +92,22 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
                         try:
                             # Check if the sender of the original message is a user
                             if isinstance(original_message.sender, User):
-                                sender_username = original_message.sender.username if original_message.sender.username else ""
-                                sender_first_name = original_message.sender.first_name if original_message.sender.first_name else ""
-                                sender_last_name = original_message.sender.last_name if original_message.sender.last_name else ""
-                                sender_user_id = original_message.sender.id
+                                sender_first_name = original_message.sender.first_name or ""
+                                sender_last_name = original_message.sender.last_name or ""
                             else:
-                                # Handle the case where the sender is not a user
-                                sender_username = original_message.sender.username if original_message.sender.username else ""
                                 sender_first_name = ""
                                 sender_last_name = ""
-                                sender_user_id = original_message.sender.id
+                            sender_user_id = original_message.sender.id
+                            sender_username = original_message.sender.username or ""
                         except Exception as e:
                             sender_username = ""
                             sender_first_name = ""
                             sender_last_name = ""
                             sender_user_id = ""
 
-
-                            receiver_username = post.sender.username if post.sender.username else ""
-                            receiver_first_name = post.sender.first_name if post.sender.first_name else ""
-                            receiver_last_name = post.sender.last_name if post.sender.last_name else ""
+                            receiver_username = post.sender.username or ""
+                            receiver_first_name = post.sender.first_name or ""
+                            receiver_last_name = post.sender.last_name or ""
                             receiver_user_id = post.sender.id if post.sender else ""
 
                             interaction_type = "reply"
@@ -135,6 +142,12 @@ async def scrape_user_messages(channel_name, target_user, user_directory, downlo
 
 
 async def main():
+    """
+        Scrapes messages from a list of target channels and saves them to a CSV file.
+
+        Returns:
+            None
+    """
     print()
     target_user = input(f"{Fore.CYAN}Please enter the target user's @username: {Style.RESET_ALL}")
     target_list_filename = input(
