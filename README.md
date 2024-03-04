@@ -137,6 +137,8 @@ The analysis will be output into the Collection folder.
 
 # Known Issues
 - While parsing and tagging works, Arabic language indicators are not printing correctly to PDF.
+- Need to find a method to collect a user's posts that does not rely on @username as this value is hidden by users with good PERSEC.
+- Unable to collect upon certain chat types.
 
 # Credit
 
