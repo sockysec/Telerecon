@@ -1,11 +1,11 @@
+import asyncio
 import os
 import re
-import asyncio
+
+import details as ds
+from colorama import Fore, Style
 from telethon import TelegramClient
 from telethon.tl.types import MessageEntityTextUrl
-import pandas as pd
-from colorama import Fore, Style
-import details as ds
 
 # Login details
 api_id = ds.apiID
@@ -14,6 +14,12 @@ phone = ds.number
 
 
 async def main():
+    """
+        Scrapes URLs from a target Telegram channel and saves them to a CSV file.
+
+        Returns:
+            None
+    """
     client = TelegramClient(phone, api_id, api_hash)
 
     await client.start()
@@ -46,7 +52,7 @@ async def main():
                     url = entity.url
                     if 'https://t.me/' in url:
                         if match := re.match(
-                            r'https?://t\.me/([^/\s]+)/?', url
+                                r'https?://t\.me/([^/\s]+)/?', url
                         ):
                             channel_link = f'https://t.me/{match[1]}'
                             urls.add(channel_link)

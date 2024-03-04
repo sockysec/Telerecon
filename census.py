@@ -5,6 +5,18 @@ from datetime import datetime, timezone
 
 
 def scrape_subscriber_counts(channel_urls):
+    """
+        Scrapes subscriber counts from a list of channel URLs and calculates the total number of subscribers.
+
+        Args:
+            channel_urls (list): List of URLs of the channels to scrape subscriber counts from.
+
+        Returns:
+            None
+
+        Examples:
+            scrape_subscriber_counts(["https://channel1.com", "https://channel2.com"])
+    """
     total_subscribers = 0
     for url in channel_urls:
         response = requests.get(url)
@@ -34,6 +46,15 @@ def scrape_subscriber_counts(channel_urls):
 
 
 def main():
+    """
+        Reads a file containing a list of channel URLs, scrapes member counts for each channel, and prints the results.
+
+        Returns:
+            None
+
+        Examples:
+            main()
+    """
     channel_urls_file = input("Enter the name of the file containing the list of channel URLs (csv or txt): ")
 
     # Read the channel URLs from the file

@@ -1,19 +1,37 @@
-from PIL import Image
-from PIL.ExifTags import TAGS, GPSTAGS
-import os
 import csv
+import os
+
 import folium
+from PIL import Image
+from PIL.ExifTags import GPSTAGS
 from folium.plugins import MarkerCluster
-import unicodedata
 
 
 # Function to remove non-alphanumeric characters from a string
 def remove_non_alphanumeric(text):
+    """
+        Removes non-alphanumeric characters from a given text.
+
+        Args:
+            text (str): The input text.
+
+        Returns:
+            str: The text with non-alphanumeric characters removed.
+    """
     return ''.join(char for char in text if char.isalnum())
 
 
 # Function to extract metadata from an image
 def extract_metadata(image_path):
+    """
+        Extracts metadata from an image file.
+
+        Args:
+            image_path (str): The path to the image file.
+
+        Returns:
+            dict: The extracted metadata as a dictionary, or None if no metadata is found.
+    """
     try:
         with Image.open(image_path) as img:
             metadata = img._getexif()
@@ -25,6 +43,15 @@ def extract_metadata(image_path):
 
 # Function to extract GPS metadata from an image
 def extract_gps_metadata(image_path):
+    """
+        Extracts GPS metadata from an image file.
+
+        Args:
+            image_path (str): The path to the image file.
+
+        Returns:
+            dict: The extracted GPS metadata as a dictionary, or None if no GPS metadata is found.
+    """
     try:
         with Image.open(image_path) as img:
             exif_data = img._getexif()
@@ -37,6 +64,15 @@ def extract_gps_metadata(image_path):
 
 # Function to parse and format GPS/Geo data
 def parse_gps_info(gps_info):
+    """
+        Parses GPS information from a dictionary.
+
+        Args:
+            gps_info (dict): The GPS information dictionary.
+
+        Returns:
+            dict: The parsed GPS information as a dictionary, or None if no GPS information is provided.
+    """
     if not gps_info:
         return None
 

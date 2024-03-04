@@ -1,14 +1,10 @@
+import datetime
 import os
 
-import datetime
-
-from telethon import TelegramClient
-
-from telethon.tl.types import UserStatusOffline
-
 from colorama import init, Fore, Style
-
-from details import apiID, apiHash, number
+from details import apiID, apiHash
+from telethon import TelegramClient
+from telethon.tl.types import UserStatusOffline
 
 # Initialize colorama for colored console output
 
@@ -21,6 +17,17 @@ def format_timestamp(timestamp):
 
 
 async def get_user_information(client, identifier, username):
+    """
+        Retrieves information about a user and saves it to a text file.
+
+        Args:
+            client: The Telegram client.
+            identifier: The identifier of the user.
+            username: The username of the user.
+
+        Returns:
+            None
+    """
     try:
 
         user = await client.get_entity(identifier)
@@ -132,6 +139,12 @@ async def get_user_information(client, identifier, username):
 
 
 async def main():
+    """
+        Retrieves information about a target user and saves it to a text file.
+
+        Returns:
+            None
+    """
     identifier = input(f"{Fore.CYAN}Enter target @username{Fore.RESET}: ")
 
     # Create a 'Collection' directory if it doesn't exist

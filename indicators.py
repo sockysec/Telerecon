@@ -21,6 +21,21 @@ from reportlab.platypus import PageBreak
 
 def extract_sentences(username, input_csv, output_pdf, target_phrase_sections):
     username = username.strip("@")  # Remove "@" symbol from username
+    """
+        Extracts sentences from a CSV file based on target phrases and generates a PDF report highlighting the matches.
+
+        Args:
+            username (str): The username to extract sentences for.
+            input_csv (str): The path to the input CSV file.
+            output_pdf (str): The path to save the output PDF report.
+            target_phrase_sections (list): A list of tuples containing section titles and corresponding target phrases.
+
+        Returns:
+            None
+
+        Examples:
+            extract_sentences("@username", "input.csv", "output.pdf", [("Section 1", ["target1", "target2"]), ("Section 2", ["target3", "target4"])])
+    """
 
     input_csv_path = f"Collection/{username}/{username}_messages.csv"
 
