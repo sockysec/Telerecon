@@ -67,7 +67,7 @@ If overwhelmed, try using the sample targeting workflow provided later in the Re
 
 4. **Collect user messages from a list of target channels:**  iterate through a txt/csv directory list of Telegram channels, collecting and compiling any messages by the target username. Option to also download media (NOTE - media download slows collection). Assumes directory list is in the primary Telerecon directory.
 
-5. **Scrape all messages within a channel:**  Collect and compile messages in a target channel. Download full history, last 24 hours, or custom date range.
+5. **Scrape all messages within a channel:**  Collect and compile messages in a target channel. 
 
 6. **Scrape all t.me URLs from within a channel:**  parses a channel and extracts all t.me URLs mentioned within. This is designed to easily create a Telegram directory.
 
