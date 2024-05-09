@@ -1,11 +1,11 @@
+import importlib
 import os
 import asyncio
 import details as ds
 from telethon import TelegramClient, errors, types
 import pandas as pd
 from colorama import Fore, Style
-import subprocess
-import sys
+
 
 # API details
 api_id = ds.apiID
@@ -14,7 +14,6 @@ phone = ds.number
 
 # Rate limiting settings
 REQUEST_DELAY = 1  # Delay in seconds between requests
-
 
 async def count_user_posts(client, channel_name, target_user):
     try:
@@ -73,21 +72,24 @@ async def process_target_channels(target_user, target_list_filename):
     print()
     print(f"{Fore.GREEN}Success: Post counts saved to {csv_filename}{Style.RESET_ALL}")
 
-
-if __name__ == '__main__':
+async def main():
     target_user = input(f"{Fore.CYAN}Please enter the target user's @username or User ID:{Style.RESET_ALL} ")
     target_user = target_user.replace("@", "")  # Remove "@" symbol
 
     target_list_filename = input(
         f"{Fore.CYAN}Please enter the filename of the target channel list (csv/txt):{Style.RESET_ALL} ")
 
-    asyncio.run(process_target_channels(target_user, target_list_filename))
+    await process_target_channels(target_user, target_list_filename)
 
     # Ask the user if they want to scrape posts
     print()
     scrape_choice = input(
         f"{Fore.CYAN}Do you want to scrape posts from target channels? (y/n): {Style.RESET_ALL} ").strip().lower()
 
-    if scrape_choice == "y":
-        # Launch usermultiscraper.py using subprocess and sys.executable
-        subprocess.run([sys.executable, "usermultiscraper.py", target_user])
+    if scrape_choice.lower() == "y":
+        model = importlib.import_module("usermultiscraper")
+        await model.main(target_user, target_list_filename)
+
+if __name__ == '__main__':
+    asyncio.run(main())
+
