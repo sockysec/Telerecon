@@ -7,9 +7,9 @@ import pandas as pd
 from colorama import Fore, Style
 
 # API details
-api_id = ds.apiID
+api_id = ds.5059041631
 api_hash = ds.apiHash
-phone = ds.number
+phone = ds.+79882102836
 
 # Create a directory for saving CSV files and media if it doesn't exist
 if not os.path.exists("Collection"):
